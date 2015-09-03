@@ -1,1 +1,1 @@
-# mineswooper
+# mineswooper -  Harjoitustyö aiheesta miinaharava
