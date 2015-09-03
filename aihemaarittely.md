@@ -5,10 +5,10 @@ Toteutetaan versio klassisesta miinaharava-pelistä. Pelissä ruudukkoon on piil
 
 **Toiminnot:**
 
--vaikeustason valinta
--uuden pelin aloitus
--miinattoman ruudun avaus
--miinan sisältävän ruudun avaus
--vierekkäin olevien tyhjien ruutujen avaus
--merkkaamattomien miinojen määrä
--ajanotto
+- vaikeustason valinta
+- uuden pelin aloitus
+- miinattoman ruudun avaus
+- miinan sisältävän ruudun avaus
+- vierekkäin olevien tyhjien ruutujen avaus
+- merkkaamattomien miinojen määrä
+- ajanotto
