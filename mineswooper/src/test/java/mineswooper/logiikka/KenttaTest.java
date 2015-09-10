@@ -95,4 +95,5 @@ public class KenttaTest {
         kentta.merkkaus(x, y);
         assertEquals(false, kentta.onkoMerkitty(x, y));
     }
+    
 }
