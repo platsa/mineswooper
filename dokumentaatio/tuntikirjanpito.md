@@ -1,1 +1,2 @@
 - 3.9.2015 3h, Projektin aloitus
+- 10.9.2013 3h, koodauksen aloitus

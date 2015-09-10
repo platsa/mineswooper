@@ -20,7 +20,7 @@ public class Kentta {
         this.ruudukko = new Ruutu[vaikeus.getLeveys()][vaikeus.getKorkeus()];
         for(int j = 0; j < vaikeus.getKorkeus(); j++) {
             for(int i = 0; i < vaikeus.getLeveys(); i++) {
-                ruudukko[j][i] = new Ruutu();
+                ruudukko[i][j] = new Ruutu();
             }
         }
         asetaMiinat();
@@ -42,13 +42,15 @@ public class Kentta {
     
     private void merkitseNumerot() {
         for(int i = 0; i < vaikeus.getLeveys(); i++) {
-            int miinat = 0;
-            for(int j = 0; i < vaikeus.getKorkeus(); i++) {
+            for(int j = 0; j < vaikeus.getKorkeus(); j++) {
+                int miinat = 0;
                 if(!ruudukko[i][j].onkoMiinaa()) {
                     for(int k = -1; k < 2; k++) {
                         for(int l = -1; l < 2; l++) {
-                            if(ruudukko[i+k][j+l].onkoMiinaa()) {
-                                miinat++;
+                            if(i+k >= 0 && i+k < vaikeus.getLeveys() && j+l >= 0 && j+l < vaikeus.getKorkeus()) {
+                                if(ruudukko[i+k][j+l].onkoMiinaa()) {
+                                    miinat++;
+                                }
                             }
                         }
                     }
@@ -60,6 +62,30 @@ public class Kentta {
     
     public boolean onkoMiinaa(int x, int y) {
         return ruudukko[x][y].onkoMiinaa();
+    }
+    
+    public int montaLahistolla(int x, int y) {
+        if(!onkoMiinaa(x, y)) {
+            return ruudukko[x][y].getLkm();
+        } else {
+            return -1;
+        }
+    }
+    
+    public boolean onkoAvattu(int x, int y) {
+        return ruudukko[x][y].onkoAvattu();
+    }
+    
+    public void merkkaus(int x, int y) {
+        if(!ruudukko[x][y].onkoMerkitty()) {
+            ruudukko[x][y].merkitse();
+        } else {
+            ruudukko[x][y].merkkiPois();
+        }
+    }
+    
+    public boolean onkoMerkitty(int x, int y) {
+        return ruudukko[x][y].onkoMerkitty();
     }
     
     public void avaaRuutu(int x, int y) {
@@ -74,6 +100,7 @@ public class Kentta {
     private void avaaViereiset(int x, int y) {
         for(int i = -1; i < 2; i++) {
             for(int j = -1; j < 2; j++) {
+                if(x+i >= 0 && x+i < vaikeus.getLeveys() && y+j >= 0 && y+j < vaikeus.getKorkeus())
                 if(!ruudukko[x+i][y+j].onkoAvattu()) {
                     avaaRuutu(x+i, y+j);
                 }
