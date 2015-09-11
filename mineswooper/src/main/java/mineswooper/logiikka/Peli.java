@@ -21,7 +21,7 @@ public class Peli {
     }
     
     public void vasenKlikkaus(int x, int y) {
-        if(!aika.aikaKaynnissa()) {
+        if(!aika.aikaKaynnistetty()) {
             aika.aloita();
         }
         if(kentta.onkoMerkitty(x, y)) {
@@ -33,7 +33,7 @@ public class Peli {
     }
     
     public void oikeaKlikkaus(int x, int y) {
-        if(!aika.aikaKaynnissa()) {
+        if(!aika.aikaKaynnistetty()) {
             aika.aloita();
         }
         if(!kentta.onkoAvattu(x, y)) {

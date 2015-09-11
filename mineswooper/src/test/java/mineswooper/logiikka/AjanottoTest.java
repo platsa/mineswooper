@@ -31,14 +31,14 @@ public class AjanottoTest {
     @Test
     public void aikaKaynnistyy() {
         aika.aloita();
-        assertEquals(true, aika.aikaKaynnissa());
+        assertEquals(true, aika.aikaKaynnistetty());
     }
     
     @Test
     public void aikaaKulunut() {
         aika.aloita();
         try {
-            Thread.sleep(1000);
+            Thread.sleep(1100);
         } catch (InterruptedException ex) {
             Logger.getLogger(AjanottoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
