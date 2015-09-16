@@ -108,13 +108,29 @@ public class Kentta {
         }
     }
     
+    public int mikaRuutu(int x, int y) {
+        if(!ruudukko[x][y].onkoAvattu()) {
+            if(ruudukko[x][y].onkoMerkitty()) {
+                return 10;
+            } else {
+                return 9;
+            }
+        } else {
+            if(ruudukko[x][y].onkoMiinaa()) {
+                return 11;
+            } else {
+                return ruudukko[x][y].getLkm();
+            }
+        }
+    }
+    
     public void siirraMiinaEkanKlikkauksenTielta(int x, int y) {
         boolean siirretty = false;
         int i = 0;
         int j = 0;
         ruudukko[x][y].poistaMiina();
         while(!siirretty) {
-            if(!onkoMiinaa(i, j)) {
+            if(!onkoMiinaa(i, j) && i != x && j != y) {
                 ruudukko[i][j].asetaMiina();
                 merkitseNumerot();
                 siirretty = true;

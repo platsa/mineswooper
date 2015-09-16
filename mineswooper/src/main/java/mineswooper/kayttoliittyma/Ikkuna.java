@@ -22,7 +22,7 @@ public class Ikkuna extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Mineswooper");
 
-        this.lauta = new Pelilauta();
+        this.lauta = new Pelilauta(SIVU, vaikeus);
         add(this.lauta);
 
         setResizable(false);
