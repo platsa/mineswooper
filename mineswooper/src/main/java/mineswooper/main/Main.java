@@ -5,24 +5,13 @@
  */
 package mineswooper.main;
 
-import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import mineswooper.kayttoliittyma.Ikkuna;
-import mineswooper.logiikka.Vaikeus;
+import mineswooper.kayttoliittyma.Kayttoliittyma;
 
-/**
- *
- * @author pekka
- */
 public class Main {
+
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            
-            @Override
-            public void run() {                
-                JFrame ikkuna = new Ikkuna(Vaikeus.VAIKEA);
-                ikkuna.setVisible(true);                
-            }
-        });
+        Kayttoliittyma kayttoliittyma = new Kayttoliittyma();
+        SwingUtilities.invokeLater(kayttoliittyma);
     }
 }

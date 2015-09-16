@@ -26,7 +26,6 @@ public class Pelilauta extends JPanel {
         this.sivu = sivu;
         this.kuvat = new Image[13];
         lisaaKuvat();
-        this.vaikeus = vaikeus;
         
         setDoubleBuffered(true);
         
