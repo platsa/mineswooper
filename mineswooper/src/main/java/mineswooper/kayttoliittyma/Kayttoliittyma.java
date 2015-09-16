@@ -11,6 +11,7 @@ package mineswooper.kayttoliittyma;
  */
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 import mineswooper.logiikka.Vaikeus;
@@ -28,8 +29,7 @@ public class Kayttoliittyma implements Runnable {
     @Override
     public void run() {
         ikkuna = new JFrame("Mineswooper");
-        ikkuna.setPreferredSize(new Dimension(vaikeus.getLeveys() * SIVU, vaikeus.getKorkeus() * SIVU));
-
+        
         ikkuna.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ikkuna.setResizable(false);
         ikkuna.setLocationRelativeTo(null);
@@ -41,8 +41,9 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        this.lauta = new Pelilauta(SIVU, vaikeus);
+        this.lauta = new Pelilauta(SIVU, vaikeus, ikkuna);
         ikkuna.add(this.lauta);
+        this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, SIVU));
     }
 
     public JFrame getFrame() {

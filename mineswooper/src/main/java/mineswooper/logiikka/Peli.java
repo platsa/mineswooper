@@ -55,4 +55,8 @@ public class Peli {
     public Vaikeus getVaikeus() {
         return vaikeus;
     }
+    
+    public int mikaRuutu(int x, int y) {
+        return kentta.mikaRuutu(x, y);
+    }
 }

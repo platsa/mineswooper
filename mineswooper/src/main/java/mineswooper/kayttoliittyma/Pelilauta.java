@@ -5,11 +5,13 @@
  */
 package mineswooper.kayttoliittyma;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import mineswooper.logiikka.Kentta;
+import mineswooper.logiikka.Peli;
 import mineswooper.logiikka.Vaikeus;
 
 /**
@@ -20,11 +22,13 @@ public class Pelilauta extends JPanel {
     private int sivu;
     private Image[] kuvat;
     private Vaikeus vaikeus;
-    private Kentta kentta;
+    private Peli peli;
+    private JFrame ikkuna;
     
-    public Pelilauta(int sivu, Vaikeus vaikeus) {
+    public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna) {
         this.sivu = sivu;
         this.kuvat = new Image[13];
+        this.ikkuna = ikkuna;
         lisaaKuvat();
         
         setDoubleBuffered(true);
@@ -45,14 +49,25 @@ public class Pelilauta extends JPanel {
     
     public void uusiPeli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
-        this.kentta = new Kentta(vaikeus);
+        this.peli = new Peli(vaikeus);
+        ikkuna.setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
+    }
+    
+    public void vasenKlikkaus(int x, int y) {
+        peli.vasenKlikkaus(x, y);
+        repaint();
+    }
+    
+    public void oikeaKlikkaus(int x, int y) {
+        peli.oikeaKlikkaus(x, y);
+        repaint();
     }
     
     @Override
     public void paintComponent(Graphics g) {
         for(int j = 0; j < vaikeus.getKorkeus(); j++) {
             for(int i = 0; i < vaikeus.getLeveys(); i++) {
-                g.drawImage(kuvat[kentta.mikaRuutu(i, j)], i * sivu, j * sivu, this);
+                g.drawImage(kuvat[peli.mikaRuutu(i, j)], i * sivu, j * sivu, this);
             }
         }
     }
