@@ -2,3 +2,4 @@
 - 10.9.2015 3h, koodauksen aloitus
 - 10.9.2015 3h, testauksen aloitus, lisää sovelluslogiikkaa
 - 16.9.2015 1,5h, vähän koodausta, kuvia
+- 16.9.2015 4h, käyttöliittymän aloittelua, hiukan sovelluslogiikkaa
