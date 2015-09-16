@@ -51,4 +51,8 @@ public class Peli {
     public int getAika() {
         return aika.aikaaKulunut();
     }
+    
+    public Vaikeus getVaikeus() {
+        return vaikeus;
+    }
 }

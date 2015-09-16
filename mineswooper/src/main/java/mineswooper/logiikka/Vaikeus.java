@@ -12,7 +12,7 @@ package mineswooper.logiikka;
 public enum Vaikeus {
     HELPPO (9, 9, 10),
     NORMAALI (16, 16, 40),
-    VAIKEA (16, 30, 99);
+    VAIKEA (30, 16, 99);
     
     private final int leveys;
     private final int korkeus;
