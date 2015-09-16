@@ -10,20 +10,17 @@ package mineswooper.logiikka;
  * @author pekka
  */
 public class Ajanotto {
-    private boolean aikaOtettu;
     private long lahtoaika;
     private int loppuaika;
     
     public Ajanotto() {
-        aikaOtettu = false;
         lahtoaika = -1;
         loppuaika = -1;
     }
     
     public void aloita() {
-        if(!aikaOtettu) {
+        if(lahtoaika == -1) {
             lahtoaika = System.nanoTime();
-            aikaOtettu = true;
         }
     }
     
@@ -42,6 +39,10 @@ public class Ajanotto {
     }
     
     public boolean aikaKaynnistetty() {
-        return aikaOtettu;
+        if(lahtoaika == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

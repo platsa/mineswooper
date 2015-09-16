@@ -107,4 +107,24 @@ public class Kentta {
             }
         }
     }
+    
+    public void siirraMiinaEkanKlikkauksenTielta(int x, int y) {
+        boolean siirretty = false;
+        int i = 0;
+        int j = 0;
+        ruudukko[x][y].poistaMiina();
+        while(!siirretty) {
+            if(!onkoMiinaa(i, j)) {
+                ruudukko[i][j].asetaMiina();
+                merkitseNumerot();
+                siirretty = true;
+            }
+            if(i < vaikeus.getLeveys() - 1) {
+                i++;
+            } else {
+                i = 0;
+                j++;
+            }
+        }
+    }
 }

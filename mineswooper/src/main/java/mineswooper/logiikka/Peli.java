@@ -22,6 +22,9 @@ public class Peli {
     
     public void vasenKlikkaus(int x, int y) {
         if(!aika.aikaKaynnistetty()) {
+            if(kentta.onkoMiinaa(x, y)) {
+                kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
+            }
             aika.aloita();
         }
         if(kentta.onkoMerkitty(x, y)) {

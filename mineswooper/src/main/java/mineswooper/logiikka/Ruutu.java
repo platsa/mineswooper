@@ -34,6 +34,10 @@ public class Ruutu {
         this.miina = true;
     }
     
+    public void poistaMiina() {
+        this.miina = false;
+    }
+    
     public boolean onkoMiinaa() {
         return miina;
     }
