@@ -35,8 +35,9 @@ public class Ajanotto {
     }
     
     public void lopeta() {
-        //loppuaika = (int) ((System.nanoTime() - lahtoaika) / 1000000000);
-        loppuaika = System.nanoTime() - lahtoaika;
+        if(loppuaika == -1) {
+            loppuaika = System.nanoTime() - lahtoaika;
+        }
     }
     
     public boolean aikaKaynnistetty() {

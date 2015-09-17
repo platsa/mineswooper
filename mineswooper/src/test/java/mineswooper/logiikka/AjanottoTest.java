@@ -67,5 +67,14 @@ public class AjanottoTest {
             Logger.getLogger(AjanottoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         assertEquals(1, aika.aikaaKulunut());
+        aika.aloita();
+        aika.lopeta();
+        assertEquals(1, aika.aikaaKulunut());
     }
+    
+    @Test
+    public void lahdetaanNollasta() {
+        assertEquals(0, aika.aikaaKulunut());
+    }
+    
 }
