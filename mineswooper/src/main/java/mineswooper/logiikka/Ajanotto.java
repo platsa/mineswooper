@@ -19,15 +19,15 @@ public class Ajanotto {
     }
     
     public void aloita() {
-        if(lahtoaika == -1) {
+        if (lahtoaika == -1) {
             lahtoaika = System.nanoTime();
         }
     }
     
     public int aikaaKulunut() {
-        if(lahtoaika == -1) {
+        if (lahtoaika == -1) {
             return 0;
-        } else if(loppuaika == -1) {
+        } else if (loppuaika == -1) {
             return (int) ((System.nanoTime() - lahtoaika) / 1000000000);
         } else {
             return (int) loppuaika / 1000000000;
@@ -35,13 +35,13 @@ public class Ajanotto {
     }
     
     public void lopeta() {
-        if(loppuaika == -1) {
+        if (loppuaika == -1) {
             loppuaika = System.nanoTime() - lahtoaika;
         }
     }
     
     public boolean aikaKaynnistetty() {
-        if(lahtoaika == -1) {
+        if (lahtoaika == -1) {
             return false;
         } else {
             return true;

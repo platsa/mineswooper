@@ -44,7 +44,7 @@ public class PeliTest {
     
     @Test
     public void klikkaamallaMiinaaHavitaan() {
-        for(int i = 0; i < vaikeus.getLeveys(); i++) {
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
             for (int j = 0; j < vaikeus.getKorkeus(); j++) {
                 peli.vasenKlikkaus(i, j);
             }
@@ -62,14 +62,14 @@ public class PeliTest {
     
     public void havitessaMerkkaamattomatMiinatAvataan() {
         int miinat = 0;
-        for(int i = 0; i < vaikeus.getLeveys(); i++) {
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
             for (int j = 0; j < vaikeus.getKorkeus(); j++) {
                 peli.vasenKlikkaus(i, j);
             }
         }
-        for(int i = 0; i < vaikeus.getLeveys(); i++) {
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
             for (int j = 0; j < vaikeus.getKorkeus(); j++) {
-                if(peli.mikaRuutu(i, j) == 11 || peli.mikaRuutu(i, j) == 12) {
+                if (peli.mikaRuutu(i, j) == 11 || peli.mikaRuutu(i, j) == 12) {
                     miinat++;
                 }
             }

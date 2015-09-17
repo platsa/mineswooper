@@ -25,19 +25,19 @@ public class Peli {
     }
     
     public void vasenKlikkaus(int x, int y) {
-        if(!aika.aikaKaynnistetty()) {
-            if(kentta.onkoMiinaa(x, y)) {
+        if (!aika.aikaKaynnistetty()) {
+            if (kentta.onkoMiinaa(x, y)) {
                 kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
             }
             aika.aloita();
         }
-        if(kentta.onkoMerkitty(x, y)) {
-        } else if(kentta.onkoMiinaa(x, y) && !peliLoppunut) {
+        
+        if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
             kentta.avaaRuutu(x, y);
             kentta.laukaise(x, y);
             peliPaattyy();
-        } else {
-            if(!peliLoppunut) {
+        } else if (!kentta.onkoMerkitty(x, y)) {
+            if (!peliLoppunut) {
                 kentta.avaaRuutu(x, y);
                 voittikoPelin();
             }
@@ -45,20 +45,20 @@ public class Peli {
     }
     
     public void oikeaKlikkaus(int x, int y) {
-        if(!kentta.onkoAvattu(x, y) && !peliLoppunut) {
+        if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
             kentta.merkkaus(x, y);
         }
     }
     
     public void voittikoPelin() {
-        if(!kentta.onkoAvaamattomiaMiinattomiaRuutuja()) {
+        if (!kentta.onkoAvaamattomiaMiinattomiaRuutuja()) {
             peliVoitettu = true;
             peliPaattyy();
         }
     }
     
     public void peliPaattyy() {
-        if(!peliVoitettu) {
+        if (!peliVoitettu) {
             kentta.avaaMerkkaamattomatMiinat();
         }
         peliLoppunut = true;

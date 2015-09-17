@@ -28,9 +28,9 @@ public class HiiriAdapteri extends MouseAdapter {
         int y = e.getY() / sivu;
         
         
-        if(e.getButton() == MouseEvent.BUTTON1) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
             lauta.vasenKlikkaus(x, y);
-        } else if(e.getButton() == MouseEvent.BUTTON3) {
+        } else if (e.getButton() == MouseEvent.BUTTON3) {
             lauta.oikeaKlikkaus(x, y);
         }
     }

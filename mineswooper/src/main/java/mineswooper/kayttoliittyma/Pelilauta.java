@@ -38,7 +38,7 @@ public class Pelilauta extends JPanel {
     
     private void lisaaKuvat() {
         this.kuvat[0] = (new ImageIcon("resurssit/kuvat/tyhja.jpg")).getImage();
-        for(int i = 1; i < 9; i++) {
+        for (int i = 1; i < 9; i++) {
             this.kuvat[i] = (new ImageIcon("resurssit/kuvat/" + i + ".jpg")).getImage();
         }
         this.kuvat[9] = (new ImageIcon("resurssit/kuvat/avaamaton.jpg")).getImage();
@@ -56,8 +56,8 @@ public class Pelilauta extends JPanel {
     public void vasenKlikkaus(int x, int y) {
         peli.vasenKlikkaus(x, y);
         repaint();
-        if(peli.onkoPeliLoppunut()) {
-            if(peli.onkoPeliVoitettu()) {
+        if (peli.onkoPeliLoppunut()) {
+            if (peli.onkoPeliVoitettu()) {
                 voititPelin();
             } else {
                 havisitPelin();
@@ -72,8 +72,8 @@ public class Pelilauta extends JPanel {
     
     @Override
     public void paintComponent(Graphics g) {
-        for(int j = 0; j < vaikeus.getKorkeus(); j++) {
-            for(int i = 0; i < vaikeus.getLeveys(); i++) {
+        for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+            for (int i = 0; i < vaikeus.getLeveys(); i++) {
                 g.drawImage(kuvat[peli.mikaRuutu(i, j)], i * sivu, j * sivu, this);
             }
         }

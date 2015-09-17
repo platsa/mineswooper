@@ -17,7 +17,7 @@ import javax.swing.WindowConstants;
 import mineswooper.logiikka.Vaikeus;
 
 public class Kayttoliittyma implements Runnable {
-    private final int SIVU = 16;
+    private final int sivu = 16;
     private JFrame ikkuna;
     private Pelilauta lauta;
     private Vaikeus vaikeus;
@@ -41,9 +41,9 @@ public class Kayttoliittyma implements Runnable {
     }
 
     private void luoKomponentit(Container container) {
-        this.lauta = new Pelilauta(SIVU, vaikeus, ikkuna);
+        this.lauta = new Pelilauta(sivu, vaikeus, ikkuna);
         ikkuna.add(this.lauta);
-        this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, SIVU));
+        this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, sivu));
     }
 
     public JFrame getFrame() {
