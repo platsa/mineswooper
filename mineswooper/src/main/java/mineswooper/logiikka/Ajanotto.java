@@ -11,7 +11,7 @@ package mineswooper.logiikka;
  */
 public class Ajanotto {
     private long lahtoaika;
-    private int loppuaika;
+    private long loppuaika;
     
     public Ajanotto() {
         lahtoaika = -1;
@@ -30,12 +30,13 @@ public class Ajanotto {
         } else if(loppuaika == -1) {
             return (int) ((System.nanoTime() - lahtoaika) / 1000000000);
         } else {
-            return loppuaika;
+            return (int) loppuaika / 1000000000;
         }
     }
     
     public void lopeta() {
-        loppuaika = (int) ((System.nanoTime() - lahtoaika) / 1000000000);
+        //loppuaika = (int) ((System.nanoTime() - lahtoaika) / 1000000000);
+        loppuaika = System.nanoTime() - lahtoaika;
     }
     
     public boolean aikaKaynnistetty() {

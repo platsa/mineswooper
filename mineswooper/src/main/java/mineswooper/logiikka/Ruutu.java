@@ -14,12 +14,14 @@ public class Ruutu {
     private boolean miina;
     private boolean avattu;
     private boolean merkitty;
+    private boolean laukaistu;
     
     public Ruutu() {
         this.lkm = 0;
         this.miina = false;
         this.avattu = false;
         this.merkitty = false;
+        this.laukaistu = false;
     }
     
     public void setLkm(int lkm) {
@@ -60,5 +62,13 @@ public class Ruutu {
     
     public boolean onkoMerkitty() {
         return merkitty;
+    }
+    
+    public void laukaise() {
+        laukaistu = true;
+    }
+    
+    public boolean onkoLaukaistu() {
+        return laukaistu;
     }
 }

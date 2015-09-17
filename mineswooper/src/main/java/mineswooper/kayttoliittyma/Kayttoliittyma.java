@@ -23,7 +23,7 @@ public class Kayttoliittyma implements Runnable {
     private Vaikeus vaikeus;
 
     public Kayttoliittyma() {
-        vaikeus = Vaikeus.NORMAALI;
+        vaikeus = Vaikeus.HELPPO;
     }
 
     @Override

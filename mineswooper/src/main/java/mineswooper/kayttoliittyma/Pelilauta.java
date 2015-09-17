@@ -56,6 +56,13 @@ public class Pelilauta extends JPanel {
     public void vasenKlikkaus(int x, int y) {
         peli.vasenKlikkaus(x, y);
         repaint();
+        if(peli.onkoPeliLoppunut()) {
+            if(peli.onkoPeliVoitettu()) {
+                voititPelin();
+            } else {
+                havisitPelin();
+            }
+        }
     }
     
     public void oikeaKlikkaus(int x, int y) {
@@ -70,6 +77,14 @@ public class Pelilauta extends JPanel {
                 g.drawImage(kuvat[peli.mikaRuutu(i, j)], i * sivu, j * sivu, this);
             }
         }
+    }
+    
+    public void voititPelin() {
+        
+    }
+    
+    public void havisitPelin() {
+        
     }
     
 }

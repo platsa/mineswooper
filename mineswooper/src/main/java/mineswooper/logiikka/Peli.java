@@ -13,11 +13,15 @@ public class Peli {
     private Vaikeus vaikeus;
     private Kentta kentta;
     private Ajanotto aika;
+    private boolean peliLoppunut;
+    private boolean peliVoitettu;
     
     public Peli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.kentta = new Kentta(vaikeus);
         this.aika = new Ajanotto();
+        this.peliLoppunut = false;
+        this.peliVoitettu = false;
     }
     
     public void vasenKlikkaus(int x, int y) {
@@ -28,24 +32,45 @@ public class Peli {
             aika.aloita();
         }
         if(kentta.onkoMerkitty(x, y)) {
-        } else if(kentta.onkoMiinaa(x, y)) {
+        } else if(kentta.onkoMiinaa(x, y) && !peliLoppunut) {
+            kentta.avaaRuutu(x, y);
+            kentta.laukaise(x, y);
             peliPaattyy();
         } else {
-            kentta.avaaRuutu(x, y);
+            if(!peliLoppunut) {
+                kentta.avaaRuutu(x, y);
+                voittikoPelin();
+            }
         }
     }
     
     public void oikeaKlikkaus(int x, int y) {
-        if(!aika.aikaKaynnistetty()) {
-            aika.aloita();
-        }
-        if(!kentta.onkoAvattu(x, y)) {
+        if(!kentta.onkoAvattu(x, y) && !peliLoppunut) {
             kentta.merkkaus(x, y);
         }
     }
     
+    public void voittikoPelin() {
+        if(!kentta.onkoAvaamattomiaMiinattomiaRuutuja()) {
+            peliVoitettu = true;
+            peliPaattyy();
+        }
+    }
+    
     public void peliPaattyy() {
+        if(!peliVoitettu) {
+            kentta.avaaMerkkaamattomatMiinat();
+        }
+        peliLoppunut = true;
         aika.lopeta();
+    }
+    
+    public boolean onkoPeliLoppunut() {
+        return peliLoppunut;
+    }
+    
+    public boolean onkoPeliVoitettu() {
+        return peliVoitettu;
     }
     
     public int getAika() {

@@ -35,6 +35,13 @@ public class AjanottoTest {
     }
     
     @Test
+    public void aikaKaynnistetty() {
+        assertEquals(false, aika.aikaKaynnistetty());
+        aika.aloita();
+        assertEquals(true, aika.aikaKaynnistetty());
+    }
+    
+    @Test
     public void aikaaKulunut() {
         aika.aloita();
         try {

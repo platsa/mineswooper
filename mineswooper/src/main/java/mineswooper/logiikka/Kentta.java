@@ -88,6 +88,10 @@ public class Kentta {
         return ruudukko[x][y].onkoMerkitty();
     }
     
+    public void laukaise(int x, int y) {
+        ruudukko[x][y].laukaise();
+    }
+    
     public void avaaRuutu(int x, int y) {
         if(!ruudukko[x][y].onkoAvattu()) {
             ruudukko[x][y].avaa();
@@ -101,7 +105,7 @@ public class Kentta {
         for(int i = -1; i < 2; i++) {
             for(int j = -1; j < 2; j++) {
                 if(x+i >= 0 && x+i < vaikeus.getLeveys() && y+j >= 0 && y+j < vaikeus.getKorkeus())
-                if(!ruudukko[x+i][y+j].onkoAvattu()) {
+                if(!ruudukko[x+i][y+j].onkoAvattu() && !ruudukko[x+i][y+j].onkoMerkitty()) {
                     avaaRuutu(x+i, y+j);
                 }
             }
@@ -117,7 +121,11 @@ public class Kentta {
             }
         } else {
             if(ruudukko[x][y].onkoMiinaa()) {
-                return 11;
+                if(ruudukko[x][y].onkoLaukaistu()) {
+                    return 12;
+                } else {
+                    return 11;
+                }
             } else {
                 return ruudukko[x][y].getLkm();
             }
@@ -140,6 +148,27 @@ public class Kentta {
             } else {
                 i = 0;
                 j++;
+            }
+        }
+    }
+    
+    public boolean onkoAvaamattomiaMiinattomiaRuutuja() {
+        for(int i = 0; i < vaikeus.getLeveys(); i++) {
+            for(int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if(!ruudukko[i][j].onkoMiinaa() && !ruudukko[i][j].onkoAvattu()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public void avaaMerkkaamattomatMiinat() {
+        for(int i = 0; i < vaikeus.getLeveys(); i++) {
+            for(int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if(!ruudukko[i][j].onkoMerkitty() && ruudukko[i][j].onkoMiinaa()) {
+                    ruudukko[i][j].avaa();
+                }
             }
         }
     }
