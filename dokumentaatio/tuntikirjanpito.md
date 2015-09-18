@@ -4,3 +4,5 @@
 - 16.9.2015 1,5h, vähän koodausta, kuvia
 - 16.9.2015 4h, käyttöliittymän aloittelua, hiukan sovelluslogiikkaa
 - 17.9.2015 2h, voittomekaniikkaa, testausta
+- 17.9.2015 2h, pientä näpertelyä, lisätty checkstyle, korjattu checkstyle-virheet
+- 18.9.2015 1h, luokkakaavion päivitystä, pit-raportti
