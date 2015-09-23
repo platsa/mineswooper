@@ -51,11 +51,10 @@ public class Pelilauta extends JPanel {
     public void uusiPeli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.peli = new Peli(vaikeus);
-        ikkuna.setVisible(false);
         setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
         repaint();
+        ikkuna.getContentPane().setPreferredSize(getPreferredSize());
         ikkuna.pack();
-        ikkuna.setVisible(true);
         //ikkuna.setSize(getPreferredSize());
         System.out.println("" + vaikeus.getLeveys() + "*" + vaikeus.getKorkeus());
         System.out.println("Ikkuna: " + ikkuna.getSize().width + "*" + ikkuna.getSize().height);
