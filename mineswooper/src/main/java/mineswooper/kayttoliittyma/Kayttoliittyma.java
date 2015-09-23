@@ -13,6 +13,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.WindowConstants;
 import mineswooper.logiikka.Vaikeus;
 
@@ -23,7 +24,7 @@ public class Kayttoliittyma implements Runnable {
     private Vaikeus vaikeus;
 
     public Kayttoliittyma() {
-        vaikeus = Vaikeus.HELPPO;
+        vaikeus = Vaikeus.NORMAALI;
     }
 
     @Override
@@ -42,8 +43,10 @@ public class Kayttoliittyma implements Runnable {
 
     private void luoKomponentit(Container container) {
         this.lauta = new Pelilauta(sivu, vaikeus, ikkuna);
-        ikkuna.add(this.lauta);
         this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, sivu));
+        
+        ikkuna.setJMenuBar(new MenuPalkki(this.lauta));
+        ikkuna.add(this.lauta);
     }
 
     public JFrame getFrame() {

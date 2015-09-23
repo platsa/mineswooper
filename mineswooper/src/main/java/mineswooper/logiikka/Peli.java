@@ -25,28 +25,32 @@ public class Peli {
     }
     
     public void vasenKlikkaus(int x, int y) {
-        if (!aika.aikaKaynnistetty()) {
-            if (kentta.onkoMiinaa(x, y)) {
-                kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
+        if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
+            if (!aika.aikaKaynnistetty()) {
+                if (kentta.onkoMiinaa(x, y)) {
+                    kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
+                }
+                aika.aloita();
             }
-            aika.aloita();
-        }
         
-        if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
-            kentta.avaaRuutu(x, y);
-            kentta.laukaise(x, y);
-            peliPaattyy();
-        } else if (!kentta.onkoMerkitty(x, y)) {
-            if (!peliLoppunut) {
+            if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
                 kentta.avaaRuutu(x, y);
-                voittikoPelin();
+                kentta.laukaise(x, y);
+                peliPaattyy();
+            } else if (!kentta.onkoMerkitty(x, y)) {
+                if (!peliLoppunut) {
+                    kentta.avaaRuutu(x, y);
+                    voittikoPelin();
+                }
             }
         }
     }
     
     public void oikeaKlikkaus(int x, int y) {
-        if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
-            kentta.merkkaus(x, y);
+        if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
+            if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
+                kentta.merkkaus(x, y);
+            }
         }
     }
     

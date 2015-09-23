@@ -8,6 +8,7 @@ package mineswooper.kayttoliittyma;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,7 +51,14 @@ public class Pelilauta extends JPanel {
     public void uusiPeli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.peli = new Peli(vaikeus);
-        ikkuna.setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
+        ikkuna.setVisible(false);
+        setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
+        repaint();
+        ikkuna.pack();
+        ikkuna.setVisible(true);
+        //ikkuna.setSize(getPreferredSize());
+        System.out.println("" + vaikeus.getLeveys() + "*" + vaikeus.getKorkeus());
+        System.out.println("Ikkuna: " + ikkuna.getSize().width + "*" + ikkuna.getSize().height);
     }
     
     public void vasenKlikkaus(int x, int y) {
