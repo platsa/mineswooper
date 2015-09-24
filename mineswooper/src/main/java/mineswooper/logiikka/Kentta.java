@@ -113,23 +113,25 @@ public class Kentta {
         }
     }
     
-    public int mikaRuutu(int x, int y) {
+    public int mikaRuutu(int x, int y, boolean peliLoppunut) {
         if (!ruudukko[x][y].onkoAvattu()) {
             if (ruudukko[x][y].onkoMerkitty()) {
-                return 10;
-            } else {
-                return 9;
-            }
-        } else {
-            if (ruudukko[x][y].onkoMiinaa()) {
+                if (!ruudukko[x][y].onkoMiinaa() && peliLoppunut) {
+                    return 13;
+                } else {
+                    return 10;
+                }
+            } else if (ruudukko[x][y].onkoMiinaa() && peliLoppunut) {
                 if (ruudukko[x][y].onkoLaukaistu()) {
                     return 12;
                 } else {
                     return 11;
                 }
             } else {
-                return ruudukko[x][y].getLkm();
+                return 9;
             }
+        } else {
+            return ruudukko[x][y].getLkm();
         }
     }
     
@@ -162,15 +164,5 @@ public class Kentta {
             }
         }
         return false;
-    }
-    
-    public void avaaMerkkaamattomatMiinat() {
-        for (int i = 0; i < vaikeus.getLeveys(); i++) {
-            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
-                if (!ruudukko[i][j].onkoMerkitty() && ruudukko[i][j].onkoMiinaa()) {
-                    ruudukko[i][j].avaa();
-                }
-            }
-        }
     }
 }

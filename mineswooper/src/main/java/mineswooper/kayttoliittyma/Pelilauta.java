@@ -28,7 +28,7 @@ public class Pelilauta extends JPanel {
     
     public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna) {
         this.sivu = sivu;
-        this.kuvat = new Image[13];
+        this.kuvat = new Image[14];
         this.ikkuna = ikkuna;
         lisaaKuvat();
         
@@ -46,6 +46,7 @@ public class Pelilauta extends JPanel {
         this.kuvat[10] = (new ImageIcon("resurssit/kuvat/merkitty.jpg")).getImage();
         this.kuvat[11] = (new ImageIcon("resurssit/kuvat/miina.jpg")).getImage();
         this.kuvat[12] = (new ImageIcon("resurssit/kuvat/miinaLauennut.jpg")).getImage();
+        this.kuvat[13] = (new ImageIcon("resurssit/kuvat/vaarinMerkitty.jpg")).getImage();
     }
     
     public void uusiPeli(Vaikeus vaikeus) {
@@ -55,9 +56,6 @@ public class Pelilauta extends JPanel {
         repaint();
         ikkuna.getContentPane().setPreferredSize(getPreferredSize());
         ikkuna.pack();
-        //ikkuna.setSize(getPreferredSize());
-        System.out.println("" + vaikeus.getLeveys() + "*" + vaikeus.getKorkeus());
-        System.out.println("Ikkuna: " + ikkuna.getSize().width + "*" + ikkuna.getSize().height);
     }
     
     public void vasenKlikkaus(int x, int y) {

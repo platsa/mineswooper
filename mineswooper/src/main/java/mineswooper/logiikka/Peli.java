@@ -34,7 +34,6 @@ public class Peli {
             }
         
             if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
-                kentta.avaaRuutu(x, y);
                 kentta.laukaise(x, y);
                 peliPaattyy();
             } else if (!kentta.onkoMerkitty(x, y)) {
@@ -62,9 +61,6 @@ public class Peli {
     }
     
     public void peliPaattyy() {
-        if (!peliVoitettu) {
-            kentta.avaaMerkkaamattomatMiinat();
-        }
         peliLoppunut = true;
         aika.lopeta();
     }
@@ -86,6 +82,6 @@ public class Peli {
     }
     
     public int mikaRuutu(int x, int y) {
-        return kentta.mikaRuutu(x, y);
+        return kentta.mikaRuutu(x, y, peliLoppunut);
     }
 }
