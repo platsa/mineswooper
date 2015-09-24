@@ -8,14 +8,18 @@ import javax.swing.JMenuItem;
 import mineswooper.logiikka.Vaikeus;
 
 /**
- *
- * @author pekka
+ * JMenuBar-luokan perivä luokka, joka muodostaa käyttöliittymän menupalkin.
+ * 
  */
 public class MenuPalkki extends JMenuBar {
     private JMenu uusiPeli;
     private JMenuItem[] vaihtoehdot;
     private Pelilauta lauta;
     
+    /**
+     * Luo uuden menupalkin ja lisää sille komponentit.
+     * @param lauta pelilauta
+     */
     public MenuPalkki(Pelilauta lauta) {
         this.lauta = lauta;
         
@@ -34,6 +38,9 @@ public class MenuPalkki extends JMenuBar {
         }
     }
     
+    /**
+     * Lisää JMenuItemeille tapahtumankuuntelijat.
+     */
     private void lisaaKuuntelijat() {
         for (int i = 0; i < 3; i++) {
             final Vaikeus vaikeus = Vaikeus.values()[i];

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.kayttoliittyma;
 
 import java.awt.Dimension;
@@ -17,8 +12,8 @@ import mineswooper.logiikka.Peli;
 import mineswooper.logiikka.Vaikeus;
 
 /**
- *
- * @author pekka
+ * Luokka luo uuden miinaharava-pelin ja piirtää sen perusteella pelilaudan.
+ * 
  */
 public class Pelilauta extends JPanel {
     private int sivu;
@@ -27,6 +22,12 @@ public class Pelilauta extends JPanel {
     private Peli peli;
     private JFrame ikkuna;
     
+    /**
+     * Konstruktori luo uuden pelilaudan ja sille miinaharava-pelin.
+     * @param sivu ruudun sivun pituus
+     * @param vaikeus vaikeustaso
+     * @param ikkuna käyttöliittymäikkuna
+     */
     public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna) {
         this.sivu = sivu;
         this.kuvat = new Image[14];
@@ -38,6 +39,9 @@ public class Pelilauta extends JPanel {
         uusiPeli(vaikeus);
     }
     
+    /**
+     * Lukee ruudun kuvavaihtoehdot tiedostoista.
+     */
     private void lisaaKuvat() {
         this.kuvat[0] = (new ImageIcon("resurssit/kuvat/tyhja.jpg")).getImage();
         for (int i = 1; i < 9; i++) {
@@ -50,6 +54,11 @@ public class Pelilauta extends JPanel {
         this.kuvat[13] = (new ImageIcon("resurssit/kuvat/vaarinMerkitty.jpg")).getImage();
     }
     
+    /**
+     * Luo uuden miinaharava-pelin ja vaikeustason perusteella säätää ikkunan
+     * koon.
+     * @param vaikeus vaikeustaso
+     */
     public void uusiPeli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.peli = new Peli(vaikeus);
@@ -59,6 +68,12 @@ public class Pelilauta extends JPanel {
         ikkuna.pack();
     }
     
+    /**
+     * Käsittelee käyttöliittymäkomponentin alueella tapahtuvat hiiren vasemman
+     * painikkeen klikkaukset.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void vasenKlikkaus(int x, int y) {
         peli.vasenKlikkaus(x, y);
         repaint();
@@ -71,11 +86,21 @@ public class Pelilauta extends JPanel {
         }
     }
     
+    /**
+     * Käsittelee käyttöliittymäkomponentin alueella tapahtuvat hiiren oikean
+     * painikkeen klikkaukset.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void oikeaKlikkaus(int x, int y) {
         peli.oikeaKlikkaus(x, y);
         repaint();
     }
     
+    /**
+     * Piirtää miinakentän kuvista.
+     * @param g 
+     */
     @Override
     public void paintComponent(Graphics g) {
         for (int j = 0; j < vaikeus.getKorkeus(); j++) {
@@ -85,11 +110,17 @@ public class Pelilauta extends JPanel {
         }
     }
     
-    public void voititPelin() {
+    /**
+     * Pelaajan voittaessa näyttää asian ilmoittavan dialogin.
+     */
+    private void voititPelin() {
         JOptionPane.showMessageDialog(ikkuna, "Voitit pelin! Aikasi " + peli.getAika() + " sekuntia");
     }
     
-    public void havisitPelin() {
+    /**
+     * Pelaajan hävitessä näyttää asian ilmoittavan dialogin.
+     */
+    private void havisitPelin() {
         JOptionPane.showMessageDialog(ikkuna, "Hävisit pelin!");
     }
     

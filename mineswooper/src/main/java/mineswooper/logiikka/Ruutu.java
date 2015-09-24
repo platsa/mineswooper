@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.logiikka;
 
 /**
- *
- * @author pekka
+ * Luokka kuvaa miinaharava-pelin kentän yhtä ruutua ja sen ominaisuuksia.
+ * Luokka sisältää vain gettereitä ja settereitä.
  */
 public class Ruutu {
     private int lkm;

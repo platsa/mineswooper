@@ -1,26 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.kayttoliittyma;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- *
- * @author pekka
+ * Hiirenadapteri Pelilauta-luokan oliolle.
+ * 
  */
 public class HiiriAdapteri extends MouseAdapter {
     private Pelilauta lauta;
     private int sivu;
     
+    /**
+     * Konstruktori luo uuden HiiriAdapterin.
+     * @param lauta pelilauta
+     * @param sivu ruudun sivun pituus
+     */
     public HiiriAdapteri(Pelilauta lauta, int sivu) {
         this.lauta = lauta;
         this.sivu = sivu;
     }
     
+    /**
+     * Kuuntelee hiiren vasemman ja oikean painikkeen painalluksia.
+     * 
+     */
     @Override
     public void mousePressed(MouseEvent e) {
 

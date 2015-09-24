@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.kayttoliittyma;
 
-/**
- *
- * @author pekka
- */
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
@@ -17,6 +9,10 @@ import javax.swing.JMenuBar;
 import javax.swing.WindowConstants;
 import mineswooper.logiikka.Vaikeus;
 
+/**
+ * Runnable-rajapinnan toteuttava luokka, joka luo käyttöliittymän.
+ * 
+ */
 public class Kayttoliittyma implements Runnable {
     private final int sivu = 16;
     private JFrame ikkuna;
@@ -26,7 +22,10 @@ public class Kayttoliittyma implements Runnable {
     public Kayttoliittyma() {
         vaikeus = Vaikeus.NORMAALI;
     }
-
+    
+    /**
+     * Luodaan käyttöliittymän ikkuna ja kutsutaan luoKomponentit-metodia.
+     */
     @Override
     public void run() {
         ikkuna = new JFrame("Mineswooper");
@@ -40,7 +39,11 @@ public class Kayttoliittyma implements Runnable {
         ikkuna.pack();
         ikkuna.setVisible(true);
     }
-
+    
+    /**
+     * Luo ikkunaan käyttöliittymän komponentit.
+     * @param container 
+     */
     private void luoKomponentit(Container container) {
         this.lauta = new Pelilauta(sivu, vaikeus, ikkuna);
         this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, sivu));
