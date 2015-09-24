@@ -8,3 +8,4 @@
 - 18.9.2015 1h, luokkakaavion päivitystä, pit-raportti
 - 23.9.2015 3h, Menupalkki, säätöä ikkunan koon muutoksen kanssa
 - 24.9.2015 3h, Voitto/tappioviestit, ajanoton fiksausta ja pientä mekaniikan muokkausta
+- 24.9.2015 1h, JavaDocia, pientä parantelua

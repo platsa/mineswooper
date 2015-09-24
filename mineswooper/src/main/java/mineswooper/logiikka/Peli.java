@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.logiikka;
 
 /**
- *
- * @author pekka
+ * Luokka kontrolloi miinaharava-pelin kulkua.
+ * 
  */
 public class Peli {
     private Vaikeus vaikeus;
@@ -16,6 +11,10 @@ public class Peli {
     private boolean peliLoppunut;
     private boolean peliVoitettu;
     
+    /**
+     * Konstruktori luo uuden miinaharava-pelin.
+     * @param vaikeus haluttu vaikeustaso
+     */
     public Peli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.kentta = new Kentta(vaikeus);
@@ -24,6 +23,15 @@ public class Peli {
         this.peliVoitettu = false;
     }
     
+    /**
+     * Metodi toimii kun käyttäjä yrittää avata ruutua. Jos peli vasta alkaa,
+     * käynnistää ajanoton ja tarvittaessa siirtää miinan ensimmäisestä avatusta
+     * ruudusta pois. Jos peli on käynnissä, avaa tarvittaessa ruudun ja kysyy
+     * ovatko pelin lopetusehdot täyttyneet. Jos peli on jo loppunut, metodi ei
+     * tee mitään.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void vasenKlikkaus(int x, int y) {
         if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
             if (!aika.aikaKaynnistetty()) {
@@ -45,6 +53,12 @@ public class Peli {
         }
     }
     
+    /**
+     * Metodi toimii kun käyttäjä yrittää merkitä ruutua. Jos peli on käynnissä
+     * eikä ruutua ole avattu, suorittaa merkkauksen.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void oikeaKlikkaus(int x, int y) {
         if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
             if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
@@ -53,34 +67,68 @@ public class Peli {
         }
     }
     
-    public void voittikoPelin() {
+    /**
+     * Yksityinen metodi joka tarkistaa onko pelaaja voittanut pelin.
+     */
+    private void voittikoPelin() {
         if (!kentta.onkoAvaamattomiaMiinattomiaRuutuja()) {
             peliVoitettu = true;
             peliPaattyy();
         }
     }
     
-    public void peliPaattyy() {
+    /**
+     * Yksityinen metodi joka lopettaa pelin ja pysäyttää ajanoton.
+     */
+    private void peliPaattyy() {
         peliLoppunut = true;
         aika.lopeta();
     }
     
+    /**
+     * Kertoo onko peli loppunut
+     * @return onko loppunut
+     */
     public boolean onkoPeliLoppunut() {
         return peliLoppunut;
     }
     
+    /**
+     * Kertoo onko pelaaja voittanut pelin.
+     * @return onko voitettu
+     */
     public boolean onkoPeliVoitettu() {
         return peliVoitettu;
     }
     
+    /**
+     * Palauttaa ajanoton tilanteen.
+     * @return aika sekunteina
+     */
     public int getAika() {
         return aika.aikaaKulunut();
     }
     
+    /**
+     * Palauttaa pelin vaikeustason.
+     * @return vaikeustaso
+     */
     public Vaikeus getVaikeus() {
         return vaikeus;
     }
     
+    /**
+     * Kertoo mikä ruutu käyttäjälle pitäisi olla näkyvissä.
+     * Palauttaa 0-8 jos lähiruutujen miinojen lkm.
+     * Palauttaa 9 jos avaamaton ruutu.
+     * Palauttaa 10 jos avaamaton ja merkattu ruutu.
+     * Palauttaa 11 jos miina.
+     * Palauttaa 12 jos laukaistu miina.
+     * Palauttaa 13 jos väärin merkattu miina
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @return 
+     */
     public int mikaRuutu(int x, int y) {
         return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
     }
