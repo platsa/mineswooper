@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import mineswooper.logiikka.Peli;
 import mineswooper.logiikka.Vaikeus;
@@ -85,11 +86,11 @@ public class Pelilauta extends JPanel {
     }
     
     public void voititPelin() {
-        
+        JOptionPane.showMessageDialog(ikkuna, "Voitit pelin! Aikasi " + peli.getAika() + " sekuntia");
     }
     
     public void havisitPelin() {
-        
+        JOptionPane.showMessageDialog(ikkuna, "Hävisit pelin!");
     }
     
 }

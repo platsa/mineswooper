@@ -113,7 +113,7 @@ public class Kentta {
         }
     }
     
-    public int mikaRuutu(int x, int y, boolean peliLoppunut) {
+    public int mikaRuutu(int x, int y, boolean peliLoppunut, boolean peliVoitettu) {
         if (!ruudukko[x][y].onkoAvattu()) {
             if (ruudukko[x][y].onkoMerkitty()) {
                 if (!ruudukko[x][y].onkoMiinaa() && peliLoppunut) {
@@ -122,7 +122,9 @@ public class Kentta {
                     return 10;
                 }
             } else if (ruudukko[x][y].onkoMiinaa() && peliLoppunut) {
-                if (ruudukko[x][y].onkoLaukaistu()) {
+                if (peliVoitettu) {
+                    return 10;
+                } else if (ruudukko[x][y].onkoLaukaistu()) {
                     return 12;
                 } else {
                     return 11;

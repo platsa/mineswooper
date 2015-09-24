@@ -82,6 +82,6 @@ public class Peli {
     }
     
     public int mikaRuutu(int x, int y) {
-        return kentta.mikaRuutu(x, y, peliLoppunut);
+        return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
     }
 }

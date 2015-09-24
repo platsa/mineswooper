@@ -30,7 +30,7 @@ public class Ajanotto {
         } else if (loppuaika == -1) {
             return (int) ((System.nanoTime() - lahtoaika) / 1000000000);
         } else {
-            return (int) loppuaika / 1000000000;
+            return (int) (loppuaika / 1000000000);
         }
     }
     
