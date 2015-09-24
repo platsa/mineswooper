@@ -17,7 +17,7 @@ public class MenuPalkki extends JMenuBar {
     private Pelilauta lauta;
     
     public MenuPalkki(Pelilauta lauta) {
-        this.lauta=lauta;
+        this.lauta = lauta;
         
         uusiPeli = new JMenu("Uusi Peli");
         this.add(uusiPeli);
@@ -35,7 +35,7 @@ public class MenuPalkki extends JMenuBar {
     }
     
     private void lisaaKuuntelijat() {
-        for (int i = 0; i < 3 ; i++) {
+        for (int i = 0; i < 3; i++) {
             final Vaikeus vaikeus = Vaikeus.values()[i];
             vaihtoehdot[i].addActionListener(new ActionListener() {
                 @Override

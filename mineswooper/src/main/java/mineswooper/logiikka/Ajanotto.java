@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.logiikka;
 
 /**
+ *Luokka huolehtii ajanotosta.
  *
- * @author pekka
  */
 public class Ajanotto {
     private long lahtoaika;
@@ -18,12 +13,22 @@ public class Ajanotto {
         loppuaika = -1;
     }
     
+    /**
+     * Jos ajanottoa ei ole vielä aloitettu, metodi aloittaa sen.
+     */
     public void aloita() {
         if (lahtoaika == -1) {
             lahtoaika = System.nanoTime();
         }
     }
     
+    /**
+     * Jos ajanotto ei ole alkanut, metodi palauttaa nollan. Ajanoton ollessa
+     * käynnissä palauttaa aloituksesta kuluneen ajan ja ajanoton päätyttyä
+     * palauttaa aloituksen ja lopetuksen välisen ajan.
+     * 
+     * @return aika sekunteina
+     */
     public int aikaaKulunut() {
         if (lahtoaika == -1) {
             return 0;
@@ -34,12 +39,21 @@ public class Ajanotto {
         }
     }
     
+    /**
+     * Jos ajanottoa ei ole lopetettu mutta on aloitettu, lopettaa sen.
+     */
     public void lopeta() {
-        if (loppuaika == -1) {
+        if (loppuaika == -1 && lahtoaika != -1) {
             loppuaika = System.nanoTime() - lahtoaika;
         }
     }
     
+    
+    /**
+     * Kertoo onko ajanotto käynnistetty.
+     * 
+     * @return onko ajanotto käynnistetty
+     */
     public boolean aikaKaynnistetty() {
         if (lahtoaika == -1) {
             return false;

@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.logiikka;
 
 /**
+ *Lueteltu tyyppi joka pitää tallessa miinaharavan kentän koon ja miinojen määrän.
  *
- * @author pekka
  */
 public enum Vaikeus {
     HELPPO (9, 9, 10),

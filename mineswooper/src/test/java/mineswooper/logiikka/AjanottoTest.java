@@ -73,6 +73,12 @@ public class AjanottoTest {
     }
     
     @Test
+    public void eiVoiLopettaaEnnenAloitusta() {
+        aika.lopeta();
+        assertEquals(0, aika.aikaaKulunut());
+    }
+    
+    @Test
     public void lahdetaanNollasta() {
         assertEquals(0, aika.aikaaKulunut());
     }

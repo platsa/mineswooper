@@ -1,20 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mineswooper.logiikka;
 
 import java.util.Random;
 
 /**
- *
- * @author pekka
+ * Luokka hallitsee miinaharava-pelin miinakenttää.
+ * 
  */
 public class Kentta {
     private Ruutu[][] ruudukko;
     private Vaikeus vaikeus;
     
+    /**
+     * Konstruktori luo uuden miinaharava-pelin miinakentän.
+     * 
+     * @param vaikeus pelin vaikeustaso
+     */
     public Kentta(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.ruudukko = new Ruutu[vaikeus.getLeveys()][vaikeus.getKorkeus()];
@@ -27,6 +27,9 @@ public class Kentta {
         merkitseNumerot();
     }
     
+    /**
+     * Yksityiden metodi joka arpoo ja asettaa miinat kentälle.
+     */
     private void asetaMiinat() {
         Random random = new Random();
         int miinat = vaikeus.getMiinat();
@@ -40,6 +43,10 @@ public class Kentta {
         }
     }
     
+    /**
+     * Yksityinen metodi joka merkitsee kentän ruutuihin lähiruuduissa olevien
+     * miinojen määrän, jos ruudussa itsessään ei ole miinaa.
+     */
     private void merkitseNumerot() {
         for (int i = 0; i < vaikeus.getLeveys(); i++) {
             for (int j = 0; j < vaikeus.getKorkeus(); j++) {
@@ -60,10 +67,23 @@ public class Kentta {
         }
     }
     
+    /**
+     * Palauttaa tiedon onko kysytyssä ruudussa miinaa.
+     * @param x ruudun x-koordinaatti 
+     * @param y ruudun y-koordinaatti
+     * @return onko miinaa
+     */
     public boolean onkoMiinaa(int x, int y) {
         return ruudukko[x][y].onkoMiinaa();
     }
     
+    /**
+     * Jos kysytyssä ruudussa ei ole miinaa, palauttaa lähiruuduissa olevien
+     * miinojen lukumäärän.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @return -1 jos ruudussa on miina, muuten lahiruutujen miinojen määrä
+     */
     public int montaLahistolla(int x, int y) {
         if (!onkoMiinaa(x, y)) {
             return ruudukko[x][y].getLkm();
@@ -72,10 +92,22 @@ public class Kentta {
         }
     }
     
+    /**
+     * Metodi palauttaa tiedon onko kysytty ruutu jo avattu.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @return onko ruutu avattu
+     */
     public boolean onkoAvattu(int x, int y) {
         return ruudukko[x][y].onkoAvattu();
     }
     
+    /**
+     * Metodi muuttaa ruudun merkityksi jos se ei sitä vielä ole. Jos ruutu on
+     * merkitty, muuttaa ruudun merkitsemättömäksi.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void merkkaus(int x, int y) {
         if (!ruudukko[x][y].onkoMerkitty()) {
             ruudukko[x][y].merkitse();
@@ -84,14 +116,31 @@ public class Kentta {
         }
     }
     
+    /**
+     * Palauttaa tiedon onko ruutu merkitty vai ei.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @return onko merkitty
+     */
     public boolean onkoMerkitty(int x, int y) {
         return ruudukko[x][y].onkoMerkitty();
     }
     
+    /**
+     * Laukaisee ruudun miinan.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void laukaise(int x, int y) {
         ruudukko[x][y].laukaise();
     }
     
+    /**
+     * Jos ruutua ei ole vielä avattu, avaa sen. Jos ruudussa tai sen lähiruuduissa
+     * ei ole miinoja, avaa myös viereiset ruudut.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void avaaRuutu(int x, int y) {
         if (!ruudukko[x][y].onkoAvattu()) {
             ruudukko[x][y].avaa();
@@ -101,6 +150,12 @@ public class Kentta {
         }
     }
     
+    /**
+     * Yksityinen metodi joka käy läpi ruudun vierustoverit ja tarvittaessa 
+     * avaa ne.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     private void avaaViereiset(int x, int y) {
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
@@ -113,6 +168,20 @@ public class Kentta {
         }
     }
     
+    /**
+     * Palauttaa tiedon mikä ruutu käyttäjälle pitäisi olla näkyvissä.
+     * Palauttaa 0-8 jos lähiruutujen miinojen lkm.
+     * Palauttaa 9 jos avaamaton ruutu.
+     * Palauttaa 10 jos avaamaton ja merkattu ruutu.
+     * Palauttaa 11 jos miina.
+     * Palauttaa 12 jos laukaistu miina.
+     * Palauttaa 13 jos väärin merkattu miina
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     * @param peliLoppunut onko peli loppunut
+     * @param peliVoitettu onko peli voitettu
+     * @return mikä ruutu pitäisi olla näkyvissä
+     */
     public int mikaRuutu(int x, int y, boolean peliLoppunut, boolean peliVoitettu) {
         if (!ruudukko[x][y].onkoAvattu()) {
             if (ruudukko[x][y].onkoMerkitty()) {
@@ -137,6 +206,13 @@ public class Kentta {
         }
     }
     
+    /**
+     * Metodi siirtää tarvittaessa miinan pelin ensimmäisen klikkauksen tieltä
+     * mahdollisimman lähelle vasenta yläkulmaa, samalle riville jos mahdollista.
+     * Lisäksi merkitsee lähiruutujen miinojen lukumäärän uudestaan.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void siirraMiinaEkanKlikkauksenTielta(int x, int y) {
         boolean siirretty = false;
         int i = 0;
@@ -157,6 +233,11 @@ public class Kentta {
         }
     }
     
+    /**
+     * Palauttaa tiedon onko avaamattomia ja miinattomia ruutuja jäljellä, eli
+     * ovatko pelin voittoedellytykset täyttyneet.
+     * @return onko ruutuja
+     */
     public boolean onkoAvaamattomiaMiinattomiaRuutuja() {
         for (int i = 0; i < vaikeus.getLeveys(); i++) {
             for (int j = 0; j < vaikeus.getKorkeus(); j++) {
