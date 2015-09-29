@@ -10,3 +10,4 @@
 - 24.9.2015 3h, Voitto/tappioviestit, ajanoton fiksausta ja pientä mekaniikan muokkausta
 - 24.9.2015 1h, JavaDocia, pientä parantelua
 - 24.9.2015 1,5h JavaDocia, luokkakaavion päivitys, pit-raportti
+- 29.9.2015 2,5h AjanLaskija, MiinanLaskija
