@@ -34,7 +34,7 @@ public class Kayttoliittyma implements Runnable {
         ikkuna = new JFrame("Mineswooper");
         
         ikkuna.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //ikkuna.setResizable(false);
+        ikkuna.setResizable(false);
         ikkuna.setLocationRelativeTo(null);
 
         luoKomponentit(ikkuna.getContentPane());
@@ -51,8 +51,7 @@ public class Kayttoliittyma implements Runnable {
         container.setLayout(new BorderLayout());
         MiinanLaskija miinoja = new MiinanLaskija();
         AjanLaskija aika = new AjanLaskija();
-        Timer timer = new Timer(100, aika);
-        timer.start();
+        Timer paivittaja = new Timer(100, aika);
         this.lauta = new Pelilauta(sivu, vaikeus, ikkuna, miinoja, aika);
         this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, sivu));
         
@@ -60,6 +59,8 @@ public class Kayttoliittyma implements Runnable {
         container.add(miinoja, BorderLayout.WEST);
         container.add(aika, BorderLayout.EAST);
         container.add(this.lauta, BorderLayout.SOUTH);
+        
+        paivittaja.start();
     }
 
     public JFrame getFrame() {
