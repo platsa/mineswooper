@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
  * 
  */
 public class HiiriAdapteri extends MouseAdapter {
-    private Pelilauta lauta;
+    private PelinHaltija haltija;
     private int sivu;
     private MiinanLaskija miinoja;
     
@@ -17,8 +17,8 @@ public class HiiriAdapteri extends MouseAdapter {
      * @param lauta pelilauta
      * @param sivu ruudun sivun pituus
      */
-    public HiiriAdapteri(Pelilauta lauta, int sivu) {
-        this.lauta = lauta;
+    public HiiriAdapteri(PelinHaltija haltija, int sivu) {
+        this.haltija = haltija;
         this.sivu = sivu;
     }
     
@@ -34,9 +34,9 @@ public class HiiriAdapteri extends MouseAdapter {
         
         
         if (e.getButton() == MouseEvent.BUTTON1) {
-            lauta.vasenKlikkaus(x, y);
+            haltija.vasenKlikkaus(x, y);
         } else if (e.getButton() == MouseEvent.BUTTON3) {
-            lauta.oikeaKlikkaus(x, y);
+            haltija.oikeaKlikkaus(x, y);
         }
     }
     

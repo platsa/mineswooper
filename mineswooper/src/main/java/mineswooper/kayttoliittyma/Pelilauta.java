@@ -1,13 +1,9 @@
 package mineswooper.kayttoliittyma;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import mineswooper.logiikka.Peli;
 import mineswooper.logiikka.Vaikeus;
 
 /**
@@ -17,11 +13,7 @@ import mineswooper.logiikka.Vaikeus;
 public class Pelilauta extends JPanel {
     private int sivu;
     private Image[] kuvat;
-    private Vaikeus vaikeus;
-    private Peli peli;
-    private JFrame ikkuna;
-    private MiinanLaskija miinoja;
-    private AjanLaskija aika;
+    private PelinHaltija haltija;
     
     /**
      * Konstruktori luo uuden pelilaudan ja sille miinaharava-pelin.
@@ -29,17 +21,12 @@ public class Pelilauta extends JPanel {
      * @param vaikeus vaikeustaso
      * @param ikkuna käyttöliittymäikkuna
      */
-    public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna, MiinanLaskija miinoja, AjanLaskija aika) {
+    public Pelilauta(int sivu) {
         this.sivu = sivu;
         this.kuvat = new Image[14];
-        this.ikkuna = ikkuna;
-        this.miinoja = miinoja;
-        this.aika = aika;
         lisaaKuvat();
         
         setDoubleBuffered(true);
-        
-        uusiPeli(vaikeus);
     }
     
     /**
@@ -57,54 +44,8 @@ public class Pelilauta extends JPanel {
         this.kuvat[13] = (new ImageIcon("resurssit/kuvat/vaarinMerkitty.jpg")).getImage();
     }
     
-    /**
-     * Luo uuden miinaharava-pelin ja vaikeustason perusteella säätää ikkunan
-     * koon.
-     * @param vaikeus vaikeustaso
-     */
-    public void uusiPeli(Vaikeus vaikeus) {
-        this.vaikeus = vaikeus;
-        this.peli = new Peli(vaikeus);
-        miinoja.asetaPeli(this.peli);
-        miinoja.asetaTeksti();
-        aika.asetaPeli(peli);
-        aika.asetaAika();
-        setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
-        repaint();
-        ikkuna.getContentPane().setPreferredSize(new Dimension(
-                getPreferredSize().width, getPreferredSize().height + 20));
-        ikkuna.pack();
-    }
-    
-    /**
-     * Käsittelee käyttöliittymäkomponentin alueella tapahtuvat hiiren vasemman
-     * painikkeen klikkaukset.
-     * @param x ruudun x-koordinaatti
-     * @param y ruudun y-koordinaatti
-     */
-    public void vasenKlikkaus(int x, int y) {
-        peli.vasenKlikkaus(x, y);
-        repaint();
-        if (peli.onkoPeliLoppunut()) {
-            if (peli.onkoPeliVoitettu()) {
-                miinoja.asetaTeksti();
-                voititPelin();
-            } else {
-                havisitPelin();
-            }
-        }
-    }
-    
-    /**
-     * Käsittelee käyttöliittymäkomponentin alueella tapahtuvat hiiren oikean
-     * painikkeen klikkaukset.
-     * @param x ruudun x-koordinaatti
-     * @param y ruudun y-koordinaatti
-     */
-    public void oikeaKlikkaus(int x, int y) {
-        peli.oikeaKlikkaus(x, y);
-        miinoja.asetaTeksti();
-        repaint();
+    public void setPelinHaltija(PelinHaltija haltija) {
+        this.haltija = haltija;
     }
     
     /**
@@ -113,25 +54,10 @@ public class Pelilauta extends JPanel {
      */
     @Override
     public void paintComponent(Graphics g) {
-        for (int j = 0; j < vaikeus.getKorkeus(); j++) {
-            for (int i = 0; i < vaikeus.getLeveys(); i++) {
-                g.drawImage(kuvat[peli.mikaRuutu(i, j)], i * sivu, j * sivu, this);
+        for (int j = 0; j < haltija.getVaikeus().getKorkeus(); j++) {
+            for (int i = 0; i < haltija.getVaikeus().getLeveys(); i++) {
+                g.drawImage(kuvat[haltija.mikaRuutu(i, j)], i * sivu, j * sivu, this);
             }
         }
     }
-    
-    /**
-     * Pelaajan voittaessa näyttää asian ilmoittavan dialogin.
-     */
-    private void voititPelin() {
-        JOptionPane.showMessageDialog(ikkuna, "Voitit pelin! Aikasi " + peli.getAika() + " sekuntia");
-    }
-    
-    /**
-     * Pelaajan hävitessä näyttää asian ilmoittavan dialogin.
-     */
-    private void havisitPelin() {
-        JOptionPane.showMessageDialog(ikkuna, "Hävisit pelin!");
-    }
-    
 }

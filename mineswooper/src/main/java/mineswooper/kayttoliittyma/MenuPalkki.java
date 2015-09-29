@@ -14,14 +14,14 @@ import mineswooper.logiikka.Vaikeus;
 public class MenuPalkki extends JMenuBar {
     private JMenu uusiPeli;
     private JMenuItem[] vaihtoehdot;
-    private Pelilauta lauta;
+    private PelinHaltija haltija;
     
     /**
      * Luo uuden menupalkin ja lisää sille komponentit.
      * @param lauta pelilauta
      */
-    public MenuPalkki(Pelilauta lauta) {
-        this.lauta = lauta;
+    public MenuPalkki(PelinHaltija haltija) {
+        this.haltija = haltija;
         
         uusiPeli = new JMenu("Uusi Peli");
         this.add(uusiPeli);
@@ -47,7 +47,7 @@ public class MenuPalkki extends JMenuBar {
             vaihtoehdot[i].addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    lauta.uusiPeli(vaikeus);
+                    haltija.uusiPeli(vaikeus);
                 }
             });
         }

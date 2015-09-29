@@ -3,11 +3,7 @@ package mineswooper.kayttoliittyma;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.event.MouseAdapter;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuBar;
 import javax.swing.Timer;
 import javax.swing.WindowConstants;
 import mineswooper.logiikka.Vaikeus;
@@ -19,7 +15,6 @@ import mineswooper.logiikka.Vaikeus;
 public class Kayttoliittyma implements Runnable {
     private final int sivu = 16;
     private JFrame ikkuna;
-    private Pelilauta lauta;
     private Vaikeus vaikeus;
 
     public Kayttoliittyma() {
@@ -49,16 +44,18 @@ public class Kayttoliittyma implements Runnable {
      */
     private void luoKomponentit(Container container) {
         container.setLayout(new BorderLayout());
+        
         MiinanLaskija miinoja = new MiinanLaskija();
         AjanLaskija aika = new AjanLaskija();
         Timer paivittaja = new Timer(100, aika);
-        this.lauta = new Pelilauta(sivu, vaikeus, ikkuna, miinoja, aika);
-        this.lauta.addMouseListener(new HiiriAdapteri(this.lauta, sivu));
+        Pelilauta lauta = new Pelilauta(sivu);
+        PelinHaltija haltija = new PelinHaltija(lauta, miinoja, aika, ikkuna, sivu, vaikeus);
+        lauta.addMouseListener(new HiiriAdapteri(haltija, sivu));
         
-        ikkuna.setJMenuBar(new MenuPalkki(this.lauta));
+        ikkuna.setJMenuBar(new MenuPalkki(haltija));
         container.add(miinoja, BorderLayout.WEST);
         container.add(aika, BorderLayout.EAST);
-        container.add(this.lauta, BorderLayout.SOUTH);
+        container.add(lauta, BorderLayout.SOUTH);
         
         paivittaja.start();
     }

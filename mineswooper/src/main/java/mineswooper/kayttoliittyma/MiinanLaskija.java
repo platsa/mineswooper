@@ -8,15 +8,15 @@ import mineswooper.logiikka.Peli;
  * 
  */
 public class MiinanLaskija extends JLabel {
-    private Peli peli;
+    private PelinHaltija haltija;
     
     public void asetaTeksti() {
-        if (peli != null) {
-            setText(" Miinoja: " + peli.getMiinoja());
+        if (haltija != null) {
+            setText(" Miinoja: " + haltija.getMiinoja());
         }
     }
     
-    public void asetaPeli(Peli peli) {
-        this.peli = peli;
+    public void asetaPelinHaltija(PelinHaltija haltija) {
+        this.haltija = haltija;
     }
 }

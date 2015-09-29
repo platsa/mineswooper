@@ -10,16 +10,16 @@ import mineswooper.logiikka.Peli;
  * 
  */
 public class AjanLaskija extends JLabel implements ActionListener {
-    private Peli peli;
+    private PelinHaltija haltija;
     
     public void asetaAika() {
-        if (peli != null) {
-            setText("Aika: " + peli.getAika() + " ");
+        if (haltija != null) {
+            setText("Aika: " + haltija.getAika() + " ");
         }
     }
     
-    public void asetaPeli(Peli peli) {
-        this.peli = peli;
+    public void asetaPelinHaltija(PelinHaltija haltija) {
+        this.haltija = haltija;
     }
 
     @Override
