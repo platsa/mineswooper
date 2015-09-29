@@ -3,7 +3,6 @@ package mineswooper.kayttoliittyma;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +20,8 @@ public class Pelilauta extends JPanel {
     private Vaikeus vaikeus;
     private Peli peli;
     private JFrame ikkuna;
+    private MiinanLaskija miinoja;
+    private AjanLaskija aika;
     
     /**
      * Konstruktori luo uuden pelilaudan ja sille miinaharava-pelin.
@@ -28,10 +29,12 @@ public class Pelilauta extends JPanel {
      * @param vaikeus vaikeustaso
      * @param ikkuna käyttöliittymäikkuna
      */
-    public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna) {
+    public Pelilauta(int sivu, Vaikeus vaikeus, JFrame ikkuna, MiinanLaskija miinoja, AjanLaskija aika) {
         this.sivu = sivu;
         this.kuvat = new Image[14];
         this.ikkuna = ikkuna;
+        this.miinoja = miinoja;
+        this.aika = aika;
         lisaaKuvat();
         
         setDoubleBuffered(true);
@@ -62,9 +65,14 @@ public class Pelilauta extends JPanel {
     public void uusiPeli(Vaikeus vaikeus) {
         this.vaikeus = vaikeus;
         this.peli = new Peli(vaikeus);
+        miinoja.asetaPeli(this.peli);
+        miinoja.asetaTeksti();
+        aika.asetaPeli(peli);
+        aika.asetaAika();
         setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
         repaint();
-        ikkuna.getContentPane().setPreferredSize(getPreferredSize());
+        ikkuna.getContentPane().setPreferredSize(new Dimension(
+                getPreferredSize().width, getPreferredSize().height + 20));
         ikkuna.pack();
     }
     
@@ -79,6 +87,7 @@ public class Pelilauta extends JPanel {
         repaint();
         if (peli.onkoPeliLoppunut()) {
             if (peli.onkoPeliVoitettu()) {
+                miinoja.asetaTeksti();
                 voititPelin();
             } else {
                 havisitPelin();
@@ -94,6 +103,7 @@ public class Pelilauta extends JPanel {
      */
     public void oikeaKlikkaus(int x, int y) {
         peli.oikeaKlikkaus(x, y);
+        miinoja.asetaTeksti();
         repaint();
     }
     

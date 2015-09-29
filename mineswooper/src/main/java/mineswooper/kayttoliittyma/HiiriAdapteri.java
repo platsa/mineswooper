@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 public class HiiriAdapteri extends MouseAdapter {
     private Pelilauta lauta;
     private int sivu;
+    private MiinanLaskija miinoja;
     
     /**
      * Konstruktori luo uuden HiiriAdapterin.

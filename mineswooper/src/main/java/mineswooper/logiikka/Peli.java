@@ -10,6 +10,7 @@ public class Peli {
     private Ajanotto aika;
     private boolean peliLoppunut;
     private boolean peliVoitettu;
+    private int miinoja;
     
     /**
      * Konstruktori luo uuden miinaharava-pelin.
@@ -21,6 +22,7 @@ public class Peli {
         this.aika = new Ajanotto();
         this.peliLoppunut = false;
         this.peliVoitettu = false;
+        this.miinoja = vaikeus.getMiinat();
     }
     
     /**
@@ -62,7 +64,13 @@ public class Peli {
     public void oikeaKlikkaus(int x, int y) {
         if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
             if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
-                kentta.merkkaus(x, y);
+                if (!kentta.onkoMerkitty(x, y) && miinoja > 0) {
+                    kentta.merkkaus(x, y);
+                    miinoja--;
+                } else if (kentta.onkoMerkitty(x, y)) {
+                    kentta.merkkaus(x, y);
+                    miinoja++;
+                }
             }
         }
     }
@@ -131,5 +139,13 @@ public class Peli {
      */
     public int mikaRuutu(int x, int y) {
         return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
+    }
+    
+    public int getMiinoja() {
+        if (peliVoitettu) {
+            return 0;
+        } else {
+            return miinoja;
+        }
     }
 }
