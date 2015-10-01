@@ -85,11 +85,7 @@ public class Kentta {
      * @return -1 jos ruudussa on miina, muuten lahiruutujen miinojen määrä
      */
     public int montaLahistolla(int x, int y) {
-        if (!onkoMiinaa(x, y)) {
-            return ruudukko[x][y].getLkm();
-        } else {
-            return -1;
-        }
+        return ruudukko[x][y].getLkm();
     }
     
     /**

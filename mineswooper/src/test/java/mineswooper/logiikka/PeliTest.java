@@ -40,6 +40,7 @@ public class PeliTest {
             Logger.getLogger(AjanottoTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         assertEquals(1, peli.getAika());
+        assertEquals(1, peli.getAikaTarkka(), 0.1);
     }
     
     @Test
@@ -77,5 +78,15 @@ public class PeliTest {
         assertEquals(vaikeus.getMiinat(), miinat);
     }
     
+    @Test
+    public void merkkiPois() {
+        peli.oikeaKlikkaus(6, 7);
+        peli.oikeaKlikkaus(6, 7);
+        assertEquals(9, peli.mikaRuutu(6, 7));
+    }
     
+    @Test
+    public void miinoja() {
+        assertEquals(vaikeus.getMiinat(), peli.getMiinoja());
+    }
 }

@@ -96,4 +96,18 @@ public class KenttaTest {
         assertEquals(false, kentta.onkoMerkitty(x, y));
     }
     
+    @Test
+    public void siirtoEkanKlikkauksenTielta() {
+        boolean siirretty = false;
+        for (int i = 1; i < vaikeus.getLeveys(); i++) {
+            for (int j = 1; j < vaikeus.getKorkeus(); j++) {
+                if (kentta.onkoMiinaa(i, j) && !siirretty) {
+                    kentta.siirraMiinaEkanKlikkauksenTielta(i, j);
+                    siirretty = true;
+                }
+            }
+        }
+        assertEquals(true, kentta.onkoMiinaa(0, 0));
+    }
+    
 }
