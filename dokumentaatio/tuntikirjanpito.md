@@ -12,3 +12,4 @@
 - 24.9.2015 1,5h JavaDocia, luokkakaavion päivitys, pit-raportti
 - 29.9.2015 2,5h AjanLaskija, MiinanLaskija
 - 29.9.2015 2h PelinHaltija, refaktorointia
+- 1.10.2015 4h  Lähinnä sekvenssikaavioita, lisäksi hiukan testausta ja ajanoton tarkennusta
