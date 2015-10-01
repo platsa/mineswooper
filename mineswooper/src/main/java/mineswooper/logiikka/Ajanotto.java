@@ -40,6 +40,23 @@ public class Ajanotto {
     }
     
     /**
+     * Jos ajanotto ei ole alkanut, metodi palauttaa nollan. Ajanoton ollessa
+     * käynnissä palauttaa aloituksesta kuluneen ajan ja ajanoton päätyttyä
+     * palauttaa aloituksen ja lopetuksen välisen ajan.
+     * 
+     * @return aika sekunteina sadasosan tarkkuudella
+     */
+    public double aikaaKulunutTarkka() {
+        if (lahtoaika == -1) {
+            return 0;
+        } else if (loppuaika == -1) {
+            return (double) ((System.nanoTime() - lahtoaika) / 1000000000.0);
+        } else {
+            return (double) (loppuaika / 1000000000.0);
+        }
+    }
+    
+    /**
      * Jos ajanottoa ei ole lopetettu mutta on aloitettu, lopettaa sen.
      */
     public void lopeta() {

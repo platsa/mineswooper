@@ -118,6 +118,14 @@ public class Peli {
     }
     
     /**
+     * Palauttaa ajanoton tilanteen.
+     * @return aika sekunteina sadasosan tarkkuudella
+     */
+    public double getAikaTarkka() {
+        return aika.aikaaKulunutTarkka();
+    }
+    
+    /**
      * Palauttaa pelin vaikeustason.
      * @return vaikeustaso
      */

@@ -1,6 +1,8 @@
 package mineswooper.kayttoliittyma;
 
 import java.awt.Dimension;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import mineswooper.logiikka.Peli;
@@ -17,6 +19,7 @@ public class PelinHaltija {
     private AjanLaskija aika;
     private JFrame ikkuna;
     private int sivu;
+    private boolean peliPaattynyt;
     
     
     /**
@@ -50,6 +53,7 @@ public class PelinHaltija {
      * @param vaikeus vaikeustaso
      */
     public void uusiPeli(Vaikeus vaikeus) {
+        this.peliPaattynyt = false;
         this.peli = new Peli(vaikeus);
         miinoja.asetaTeksti();
         lauta.setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
@@ -94,14 +98,22 @@ public class PelinHaltija {
      * Pelaajan voittaessa näyttää asian ilmoittavan dialogin.
      */
     private void voititPelin() {
-        JOptionPane.showMessageDialog(ikkuna, "Voitit pelin! Aikasi " + peli.getAika() + " sekuntia");
+        if (!peliPaattynyt) {
+            DecimalFormat pyoristys = new DecimalFormat("#.00");
+            pyoristys.setRoundingMode(RoundingMode.HALF_UP);
+            JOptionPane.showMessageDialog(ikkuna, "Voitit pelin! Aikasi " + pyoristys.format(peli.getAikaTarkka()) + " sekuntia");
+            peliPaattynyt = true;
+        }
     }
     
     /**
      * Pelaajan hävitessä näyttää asian ilmoittavan dialogin.
      */
     private void havisitPelin() {
-        JOptionPane.showMessageDialog(ikkuna, "Hävisit pelin!");
+        if (!peliPaattynyt) {
+            JOptionPane.showMessageDialog(ikkuna, "Hävisit pelin!");
+            peliPaattynyt = true;
+        }
     }
     
     public Vaikeus getVaikeus() {
