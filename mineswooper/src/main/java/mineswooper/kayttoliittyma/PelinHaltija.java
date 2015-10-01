@@ -18,6 +18,17 @@ public class PelinHaltija {
     private JFrame ikkuna;
     private int sivu;
     
+    
+    /**
+     * Konstruktori luo uuden PelinHaltijan ja kertoo olemassaolostaan
+     * muille käyttöliittymäluokille.
+     * @param lauta
+     * @param miinoja
+     * @param aika
+     * @param ikkuna
+     * @param sivu
+     * @param vaikeus 
+     */
     public PelinHaltija(Pelilauta lauta, MiinanLaskija miinoja, AjanLaskija aika, JFrame ikkuna, int sivu, Vaikeus vaikeus) {
         this.lauta = lauta;
         this.miinoja = miinoja;
