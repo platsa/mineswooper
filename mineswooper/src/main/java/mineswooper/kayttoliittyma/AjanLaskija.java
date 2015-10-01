@@ -3,7 +3,6 @@ package mineswooper.kayttoliittyma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JLabel;
-import mineswooper.logiikka.Peli;
 
 /**
  * Näyttää käyttäjälle kuluneen ajan

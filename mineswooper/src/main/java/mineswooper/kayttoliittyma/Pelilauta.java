@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import mineswooper.logiikka.Vaikeus;
 
 /**
  * Luokka luo uuden miinaharava-pelin ja piirtää sen perusteella pelilaudan.

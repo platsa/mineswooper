@@ -1,7 +1,6 @@
 package mineswooper.kayttoliittyma;
 
 import javax.swing.JLabel;
-import mineswooper.logiikka.Peli;
 
 /**
  * Näyttää käyttäjälle merkkaamattomien miinojen määrän
