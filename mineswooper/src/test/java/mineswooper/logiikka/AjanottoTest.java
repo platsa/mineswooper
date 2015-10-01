@@ -83,4 +83,18 @@ public class AjanottoTest {
         assertEquals(0, aika.aikaaKulunut());
     }
     
+    @Test
+    public void toimiikoTarkkaAika() {
+        assertEquals(0, aika.aikaaKulunutTarkka(), 0.1);
+        aika.aloita();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AjanottoTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        assertEquals(1.0, aika.aikaaKulunutTarkka(), 0.1);
+        aika.lopeta();
+        assertEquals(1.0, aika.aikaaKulunutTarkka(), 0.1);
+    }
+    
 }
