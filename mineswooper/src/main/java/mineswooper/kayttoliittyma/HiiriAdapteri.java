@@ -23,7 +23,7 @@ public class HiiriAdapteri extends MouseAdapter {
     }
     
     /**
-     * Kuuntelee hiiren vasemman ja oikean painikkeen painalluksia.
+     * Kuuntelee hiiren vasemman ja oikean painikkeen sekä rullan painalluksia.
      * 
      */
     @Override
@@ -37,6 +37,8 @@ public class HiiriAdapteri extends MouseAdapter {
             haltija.vasenKlikkaus(x, y);
         } else if (e.getButton() == MouseEvent.BUTTON3) {
             haltija.oikeaKlikkaus(x, y);
+        } else if (e.getButton() == MouseEvent.BUTTON2) {
+            haltija.rullanKlikkaus(x, y);
         }
     }
     

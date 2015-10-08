@@ -55,6 +55,30 @@ public class Peli {
         }
     }
     
+    public void rullanKlikkaus(int x, int y) {
+        int montaMerkitty = 0;
+        if (kentta.onkoAvattu(x, y)) {
+            for (int i = -1; i < 2; i++) {
+                for (int j = -1; j < 2; j++) {
+                    if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
+                        if (kentta.onkoMerkitty(x + i, y + j)) {
+                            montaMerkitty++;
+                        }
+                    }
+                }
+            }
+            if (montaMerkitty == kentta.montaLahistolla(x, y)) {
+                for (int i = -1; i < 2; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
+                            vasenKlikkaus(x + i, y + j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     /**
      * Metodi toimii kun käyttäjä yrittää merkitä ruutua. Jos peli on käynnissä
      * eikä ruutua ole avattu, suorittaa merkkauksen.

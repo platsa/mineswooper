@@ -72,18 +72,24 @@ public class PelinHaltija {
     public void vasenKlikkaus(int x, int y) {
         peli.vasenKlikkaus(x, y);
         lauta.repaint();
-        if (peli.onkoPeliLoppunut()) {
-            if (peli.onkoPeliVoitettu()) {
-                miinoja.asetaTeksti();
-                voititPelin();
-            } else {
-                havisitPelin();
-            }
-        }
+        loppuikoPeli();
+        
     }
     
     /**
-     * Käsittelee käyttöliittymäkomponentin alueella tapahtuvat hiiren oikean
+     * Käsittelee pelilaudan alueella tapahtuvat hiiren rullan
+     * klikkaukset.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
+    public void rullanKlikkaus(int x, int y) {
+        peli.rullanKlikkaus(x, y);
+        lauta.repaint();
+        loppuikoPeli();
+    }
+    
+    /**
+     * Käsittelee pelilaudan alueella tapahtuvat hiiren oikean
      * painikkeen klikkaukset.
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
@@ -92,6 +98,17 @@ public class PelinHaltija {
         peli.oikeaKlikkaus(x, y);
         miinoja.asetaTeksti();
         lauta.repaint();
+    }
+    
+    private void loppuikoPeli() {
+        if (peli.onkoPeliLoppunut()) {
+            if (peli.onkoPeliVoitettu()) {
+                miinoja.asetaTeksti();
+                voititPelin();
+            } else {
+                havisitPelin();
+            }
+        }
     }
     
     /**
