@@ -100,6 +100,9 @@ public class PelinHaltija {
         lauta.repaint();
     }
     
+    /**
+     * Tarkistaa onko peli loppunut.
+     */
     private void loppuikoPeli() {
         if (peli.onkoPeliLoppunut()) {
             if (peli.onkoPeliVoitettu()) {

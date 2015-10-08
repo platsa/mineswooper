@@ -55,6 +55,13 @@ public class Peli {
         }
     }
     
+    /**
+     * Metodi toimii kun käyttäjä yrittää avata ruudun ympärillä olevia
+     * merkkaamattomia ruutuja. Jos ruutu on avattu ja ympärillä on
+     * oikea määrä merkittyjä ruutuja, avaa ympäröivät ruudut.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
     public void rullanKlikkaus(int x, int y) {
         int montaMerkitty = 0;
         if (kentta.onkoAvattu(x, y)) {
