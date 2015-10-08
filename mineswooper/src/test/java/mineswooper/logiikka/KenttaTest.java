@@ -79,6 +79,27 @@ public class KenttaTest {
     }
     
     @Test
+    public void testataanNumeroa() {
+        int x = 6;
+        int y = 7;
+        if (kentta.onkoMiinaa(x, y)) {
+            assertEquals(0, kentta.montaLahistolla(x, y));
+        } else {
+            int miinat = 0;
+            for (int k = -1; k < 2; k++) {
+                for (int l = -1; l < 2; l++) {
+                    if (x + k >= 0 && x + k < vaikeus.getLeveys() && y + l >= 0 && y + l < vaikeus.getKorkeus()) {
+                        if (kentta.onkoMiinaa(x + k, y + l)) {
+                            miinat++;
+                        }
+                    }
+                }
+            }
+            assertEquals(miinat, kentta.montaLahistolla(x, y));
+        }
+    }
+    
+    @Test
     public void toimiikoAvaus() {
         int x = 3;
         int y = 7;
@@ -103,11 +124,33 @@ public class KenttaTest {
             for (int j = 1; j < vaikeus.getKorkeus(); j++) {
                 if (kentta.onkoMiinaa(i, j) && !siirretty) {
                     kentta.siirraMiinaEkanKlikkauksenTielta(i, j);
-                    siirretty = true;
+                    //siirretty = true;
+                    assertEquals(false, kentta.onkoMiinaa(i, j));
                 }
             }
         }
         assertEquals(true, kentta.onkoMiinaa(0, 0));
+        
+        int miinoja = 0;
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if (kentta.onkoMiinaa(i, j)) {
+                    miinoja++;
+                }
+            }
+        }
+        assertEquals(vaikeus.getMiinat(), miinoja);
+    }
+    
+    @Test
+    public void onkohanAvaamattomiaMiinattomiaRuutuja() {
+        assertEquals(true, kentta.onkoAvaamattomiaMiinattomiaRuutuja());
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                kentta.avaaRuutu(i, j);
+            }
+        }
+        assertEquals(false, kentta.onkoAvaamattomiaMiinattomiaRuutuja());
     }
     
 }

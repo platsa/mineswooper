@@ -35,22 +35,20 @@ public class Peli {
      * @param y ruudun y-koordinaatti
      */
     public void vasenKlikkaus(int x, int y) {
-        if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
-            if (!aika.aikaKaynnistetty()) {
-                if (kentta.onkoMiinaa(x, y)) {
-                    kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
-                }
-                aika.aloita();
+        if (!aika.aikaKaynnistetty()) {
+            if (kentta.onkoMiinaa(x, y)) {
+                kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
             }
+            aika.aloita();
+        }
         
-            if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
-                kentta.laukaise(x, y);
-                peliPaattyy();
-            } else if (!kentta.onkoMerkitty(x, y)) {
-                if (!peliLoppunut) {
-                    kentta.avaaRuutu(x, y);
-                    voittikoPelin();
-                }
+        if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
+            kentta.laukaise(x, y);
+            peliPaattyy();
+        } else if (!kentta.onkoMerkitty(x, y)) {
+            if (!peliLoppunut) {
+                kentta.avaaRuutu(x, y);
+                voittikoPelin();
             }
         }
     }
@@ -93,15 +91,13 @@ public class Peli {
      * @param y ruudun y-koordinaatti
      */
     public void oikeaKlikkaus(int x, int y) {
-        if (x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
-            if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
-                if (!kentta.onkoMerkitty(x, y) && miinoja > 0) {
-                    kentta.merkkaus(x, y);
-                    miinoja--;
-                } else if (kentta.onkoMerkitty(x, y)) {
-                    kentta.merkkaus(x, y);
-                    miinoja++;
-                }
+        if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
+            if (!kentta.onkoMerkitty(x, y) && miinoja > 0) {
+                kentta.merkkaus(x, y);
+                miinoja--;
+            } else if (kentta.onkoMerkitty(x, y)) {
+                kentta.merkkaus(x, y);
+                miinoja++;
             }
         }
     }

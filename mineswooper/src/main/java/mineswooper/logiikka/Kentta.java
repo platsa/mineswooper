@@ -82,7 +82,7 @@ public class Kentta {
      * miinojen lukumäärän.
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
-     * @return -1 jos ruudussa on miina, muuten lahiruutujen miinojen määrä
+     * @return 0 jos ruudussa on miina, muuten lahiruutujen miinojen määrä
      */
     public int montaLahistolla(int x, int y) {
         return ruudukko[x][y].getLkm();

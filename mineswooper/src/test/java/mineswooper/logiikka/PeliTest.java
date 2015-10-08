@@ -86,6 +86,25 @@ public class PeliTest {
     }
     
     @Test
+    public void miinalaskuriToimii() {
+        peli.oikeaKlikkaus(6, 7);
+        peli.oikeaKlikkaus(7, 7);
+        assertEquals(vaikeus.getMiinat() - 2, peli.getMiinoja());
+        peli.oikeaKlikkaus(6, 7);
+        assertEquals(vaikeus.getMiinat() - 1, peli.getMiinoja());
+    }
+    
+    @Test
+    public void eiVoiYlimerkata() {
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                peli.oikeaKlikkaus(i, j);
+            }
+        }
+        assertEquals(0, peli.getMiinoja());
+    }
+    
+    @Test
     public void miinoja() {
         assertEquals(vaikeus.getMiinat(), peli.getMiinoja());
     }

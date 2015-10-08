@@ -8,7 +8,10 @@ Toteutetaan versio klassisesta miinaharava-pelistä. Pelissä ruudukkoon on piil
 - vaikeustason valinta
 - uuden pelin aloitus
 - miinattoman ruudun avaus
+- ensimmäisellä vuorolla pelaaja ei osu miinaan
 - miinan sisältävän ruudun avaus
 - vierekkäin olevien tyhjien ruutujen avaus
+- ympäröivien ruutujen avaus, jos avatun ruudun lukema täsmää merkattujen määrään
+- miinan merkkaus
 - merkkaamattomien miinojen määrä
 - ajanotto
