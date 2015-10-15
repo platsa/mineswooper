@@ -78,11 +78,26 @@ public class Peli {
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
                         if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
-                            vasenKlikkaus(x + i, y + j);
+                            avaaRuutu(x + i, y + j);
                         }
                     }
                 }
             }
+        }
+    }
+    
+    /**
+     * Yksityinen metodi joka avaa ruudun pelin loppumisesta huolimatta.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
+    private void avaaRuutu(int x, int y) {
+        if (!peliLoppunut) {
+            vasenKlikkaus(x, y);
+        } else if (kentta.onkoMiinaa(x, y)) {
+            kentta.laukaise(x, y);
+        } else if (!kentta.onkoMerkitty(x, y)) {
+            kentta.avaaRuutu(x, y);
         }
     }
     

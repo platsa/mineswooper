@@ -128,4 +128,24 @@ public class PeliTest {
         peli.oikeaKlikkaus(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1);
         assertTrue(peli.mikaRuutu(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1) == 10);
     }
+    
+    @Test
+    public void rullanKlikkausTesti() {
+        peli.vasenKlikkaus(6, 7);
+        if (!peli.onkoPeliLoppunut()) {
+            int montaMiinaa = peli.mikaRuutu(6, 7);
+            while (montaMiinaa > 0) {
+                for (int i = -1; i < 2; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        if (montaMiinaa > 0 && !(i == 0 && j == 0)) {
+                            peli.oikeaKlikkaus(6 + i, 7 + j);
+                            montaMiinaa--;
+                        }
+                    }
+                }
+            }
+            peli.rullanKlikkaus(6, 7);
+            assertTrue(peli.mikaRuutu(7, 8) != 9);
+        }
+    }
 }
