@@ -18,7 +18,7 @@ public class MenuPalkki extends JMenuBar {
     
     /**
      * Luo uuden menupalkin ja lisää sille komponentit.
-     * @param lauta pelilauta
+     * @param haltija pelinhaltija
      */
     public MenuPalkki(PelinHaltija haltija) {
         this.haltija = haltija;

@@ -17,8 +17,6 @@ public class Pelilauta extends JPanel {
     /**
      * Konstruktori luo uuden pelilaudan ja sille miinaharava-pelin.
      * @param sivu ruudun sivun pituus
-     * @param vaikeus vaikeustaso
-     * @param ikkuna käyttöliittymäikkuna
      */
     public Pelilauta(int sivu) {
         this.sivu = sivu;
@@ -49,7 +47,7 @@ public class Pelilauta extends JPanel {
     
     /**
      * Piirtää miinakentän kuvista.
-     * @param g 
+     * @param g Graphics-olio
      */
     @Override
     public void paintComponent(Graphics g) {

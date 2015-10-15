@@ -200,7 +200,7 @@ public class Peli {
      * Palauttaa 13 jos väärin merkattu miina
      * @param x ruudun x-koordinaatti
      * @param y ruudun y-koordinaatti
-     * @return 
+     * @return ruudun numero
      */
     public int mikaRuutu(int x, int y) {
         return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);

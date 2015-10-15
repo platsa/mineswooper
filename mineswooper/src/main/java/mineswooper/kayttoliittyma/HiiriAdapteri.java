@@ -14,7 +14,7 @@ public class HiiriAdapteri extends MouseAdapter {
     
     /**
      * Konstruktori luo uuden HiiriAdapterin.
-     * @param lauta pelilauta
+     * @param haltija pelinhaltija
      * @param sivu ruudun sivun pituus
      */
     public HiiriAdapteri(PelinHaltija haltija, int sivu) {
