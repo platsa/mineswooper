@@ -108,4 +108,24 @@ public class PeliTest {
     public void miinoja() {
         assertEquals(vaikeus.getMiinat(), peli.getMiinoja());
     }
+    
+    @Test
+    public void vasenKlikkausAlueenRajoilla() {
+        peli.vasenKlikkaus(-1, -1);
+        peli.vasenKlikkaus(0, 0);
+        assertTrue(peli.mikaRuutu(0, 0) != 9);
+        peli.vasenKlikkaus(vaikeus.getLeveys(), vaikeus.getKorkeus());
+        peli.vasenKlikkaus(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1);
+        assertTrue(peli.mikaRuutu(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1) != 9);
+    }
+    
+    @Test
+    public void oikeaKlikkausAlueenRajoilla() {
+        peli.oikeaKlikkaus(-1, -1);
+        peli.oikeaKlikkaus(0, 0);
+        assertTrue(peli.mikaRuutu(0, 0) == 10);
+        peli.oikeaKlikkaus(vaikeus.getLeveys(), vaikeus.getKorkeus());
+        peli.oikeaKlikkaus(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1);
+        assertTrue(peli.mikaRuutu(vaikeus.getLeveys() - 1, vaikeus.getKorkeus() - 1) == 10);
+    }
 }

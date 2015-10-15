@@ -35,20 +35,22 @@ public class Peli {
      * @param y ruudun y-koordinaatti
      */
     public void vasenKlikkaus(int x, int y) {
-        if (!aika.aikaKaynnistetty()) {
-            if (kentta.onkoMiinaa(x, y)) {
-                kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
+        if (onkoRuudukossa(x, y)) {
+            if (!aika.aikaKaynnistetty()) {
+                if (kentta.onkoMiinaa(x, y)) {
+                    kentta.siirraMiinaEkanKlikkauksenTielta(x, y);
+                }
+                aika.aloita();
             }
-            aika.aloita();
-        }
         
-        if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
-            kentta.laukaise(x, y);
-            peliPaattyy();
-        } else if (!kentta.onkoMerkitty(x, y)) {
-            if (!peliLoppunut) {
-                kentta.avaaRuutu(x, y);
-                voittikoPelin();
+            if (kentta.onkoMiinaa(x, y) && !peliLoppunut && !kentta.onkoMerkitty(x, y)) {
+                kentta.laukaise(x, y);
+                peliPaattyy();
+            } else if (!kentta.onkoMerkitty(x, y)) {
+                if (!peliLoppunut) {
+                    kentta.avaaRuutu(x, y);
+                    voittikoPelin();
+                }
             }
         }
     }
@@ -62,7 +64,7 @@ public class Peli {
      */
     public void rullanKlikkaus(int x, int y) {
         int montaMerkitty = 0;
-        if (kentta.onkoAvattu(x, y)) {
+        if (onkoRuudukossa(x, y) && kentta.onkoAvattu(x, y)) {
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
                     if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
@@ -91,7 +93,7 @@ public class Peli {
      * @param y ruudun y-koordinaatti
      */
     public void oikeaKlikkaus(int x, int y) {
-        if (!kentta.onkoAvattu(x, y) && !peliLoppunut) {
+        if (onkoRuudukossa(x, y) && !kentta.onkoAvattu(x, y) && !peliLoppunut) {
             if (!kentta.onkoMerkitty(x, y) && miinoja > 0) {
                 kentta.merkkaus(x, y);
                 miinoja--;
@@ -99,6 +101,19 @@ public class Peli {
                 kentta.merkkaus(x, y);
                 miinoja++;
             }
+        }
+    }
+    
+    /**
+     * Metodi tarkastaa ovatko annetut koordinaatit pelialueella.
+     * @param x ruudun x-koordinaatti
+     * @param y ruudun y-koordinaatti
+     */
+    private boolean onkoRuudukossa(int x, int y) {
+        if (x >= 0 && y >= 0 && x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
+            return true;
+        } else {
+            return false;
         }
     }
     
