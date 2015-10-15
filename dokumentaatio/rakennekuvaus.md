@@ -1,0 +1,3 @@
+Pelin logiikkaa hallitsee Peli-luokka, joka vastaa pelin pyörittämisestä. Se sisältää Kentta-luokan olion, joka puolestaan mallintaa miinaharavakenttää. Kentta puolestaan sisaltaa kasan Ruutuja. Peli-luokka sisältää myös Ajanoton, joka vastaa pelin ajanotosta.
+
+Käyttöliittymän komponentit ohjelman aluksi luo Kayttoliittyma. Käyttöliittymän puolelta logiikkaan ja sen Peli-luokkaan on yhteydessä ainoastaan PelinHaltija, joka luo aina tarvittaessa uuden pelin. PelinHaltijaan on yhteys kaikilla muilla kayttoliittyman luokilla, sillä ne ovat sitä kautta itse peliin yhteydessä. PelinHaltija itse on tietoinen MiinanLaskijasta, AjanLaskijasta ja Pelilaudasta.
