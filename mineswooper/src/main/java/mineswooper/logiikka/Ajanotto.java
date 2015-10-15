@@ -72,10 +72,6 @@ public class Ajanotto {
      * @return onko ajanotto käynnistetty
      */
     public boolean aikaKaynnistetty() {
-        if (lahtoaika == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return lahtoaika != -1;
     }
 }

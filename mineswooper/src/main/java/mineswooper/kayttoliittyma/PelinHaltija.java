@@ -56,7 +56,14 @@ public class PelinHaltija {
         this.peliPaattynyt = false;
         this.peli = new Peli(vaikeus);
         miinoja.asetaTeksti();
-        lauta.setPreferredSize(new Dimension(vaikeus.getLeveys() * sivu, vaikeus.getKorkeus() * sivu));
+        paivitaIkkunanKoko();
+    }
+    
+    /**
+     * Yksityinen metodi joka päivittää ikkunan koon vastaamaan uutta peliä.
+     */
+    private void paivitaIkkunanKoko() {
+        lauta.setPreferredSize(new Dimension(getVaikeus().getLeveys() * sivu, getVaikeus().getKorkeus() * sivu));
         lauta.repaint();
         ikkuna.getContentPane().setPreferredSize(new Dimension(
                 lauta.getPreferredSize().width, lauta.getPreferredSize().height + 20));

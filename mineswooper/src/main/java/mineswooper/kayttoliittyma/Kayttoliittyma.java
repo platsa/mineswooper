@@ -58,9 +58,5 @@ public class Kayttoliittyma implements Runnable {
         container.add(lauta, BorderLayout.SOUTH);
         
         paivittaja.start();
-    }
-
-    public JFrame getFrame() {
-        return ikkuna;
-    }
+    }    
 }

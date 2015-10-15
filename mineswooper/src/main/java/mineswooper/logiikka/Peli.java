@@ -125,11 +125,7 @@ public class Peli {
      * @param y ruudun y-koordinaatti
      */
     private boolean onkoRuudukossa(int x, int y) {
-        if (x >= 0 && y >= 0 && x < vaikeus.getLeveys() && y < vaikeus.getKorkeus()) {
-            return true;
-        } else {
-            return false;
-        }
+        return x >= 0 && y >= 0 && x < vaikeus.getLeveys() && y < vaikeus.getKorkeus();
     }
     
     /**
@@ -206,6 +202,10 @@ public class Peli {
         return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
     }
     
+    /**
+     * Palauttaa merkkaamattomien miinojen määrän.
+     * @return merkkaamattomat miinat
+     */
     public int getMiinoja() {
         if (peliVoitettu) {
             return 0;

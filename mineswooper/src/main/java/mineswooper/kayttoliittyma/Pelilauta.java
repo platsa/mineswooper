@@ -46,7 +46,7 @@ public class Pelilauta extends JPanel {
     }
     
     /**
-     * Piirtää miinakentän kuvista.
+     * Piirtää kuvista koostuvan miinakentän.
      * @param g Graphics-olio
      */
     @Override

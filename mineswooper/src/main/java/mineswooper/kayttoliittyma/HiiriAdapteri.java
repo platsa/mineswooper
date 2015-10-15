@@ -25,6 +25,7 @@ public class HiiriAdapteri extends MouseAdapter {
     /**
      * Kuuntelee hiiren vasemman ja oikean painikkeen sekä rullan painalluksia.
      * 
+     * @param e MouseEvent
      */
     @Override
     public void mousePressed(MouseEvent e) {
