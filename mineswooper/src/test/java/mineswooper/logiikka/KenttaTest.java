@@ -38,22 +38,13 @@ public class KenttaTest {
                 }
             }
         }
-        assertEquals(99, miinat);
-    }
-    
-    @Test
-    public void avaaRuudut() {
-        for (int i = 0; i < vaikeus.getLeveys(); i++) {
-            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
-                kentta.avaaRuutu(i, j);
-            }
-        }
+        assertEquals(vaikeus.getMiinat(), miinat);
     }
     
     @Test
     public void piirraKentta() {
-        for (int i = 0; i < vaikeus.getLeveys(); i++) {
-            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+        for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+            for (int i = 0; i < vaikeus.getLeveys(); i++) {
                 if (kentta.onkoMiinaa(i, j)) {
                     System.out.print("*");
                 } else {
@@ -66,8 +57,8 @@ public class KenttaTest {
     
     @Test
     public void piirraNumerot() {
-        for (int i = 0; i < vaikeus.getLeveys(); i++) {
-            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+        for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+            for (int i = 0; i < vaikeus.getLeveys(); i++) {
                 if (kentta.onkoMiinaa(i, j)) {
                     System.out.print("*");
                 } else {

@@ -1,0 +1,5 @@
+- Ruutua ja Vaikeutta ei testattu erikseen lainkaan, sillä ne sisältävät vain gettereitä ja settereitä.
+- Ajanotto-luokka on testattu kattavasti. Yhteen metodiin on sisällytetty normaalia enemmän testausta, jotta odotteluvaihetta olisi mahdollisimman vähän ja testaus edes jokseenkin ripeätä.
+- Miinakentän luonnin sattumanvaraisuudesta johtuen mm. kentän ja lähiruutujen miinojen määrän oikeellisuutta on testattu myös silmämääräisesti tulostamalla kenttä komentoriville. Viereisten ruutujen avausta kun avataan ruutu jonka vieressä ei ole miinoja on testattu pelaamalla. En ole lähtenyt tekemään testejä varten luokkiin lisämetodeja. Myös mikaRuutu-metodin automaattinen testaus on puutteellista sattumanvaraisuuden takia.
+- Samaten Peli-luokan automaattitestaus on pelin sattumanvaraisuudesta johtuen puutteellista. En ole katsonut tarpeelliseksi lisätä luokkiin metodeja vain testausta varten, saati sitten kehittää automaattiratkaisijaa (joka ei pelin luonteesta johtuen edes toimisi 100-prosenttisesti) tai vakiokentän tuontimahdollisuutta, vaan mm. voittomekaniikkaa on testattu pelaamalla.
+- Tiedossa olevia bugeja ei ole.
