@@ -135,8 +135,8 @@ public class PeliTest {
     
     @Test
     public void rullanKlikkausTesti() {
-        int x = 0;
-        int y = 0;
+        int x = 6;
+        int y = 7;
         peli.vasenKlikkaus(x, y);
         int montaMiinaa = peli.mikaRuutu(x, y);
         for (int i = -1; i < 2; i++) {

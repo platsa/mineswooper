@@ -1,5 +1,5 @@
-- Ruutua ja Vaikeutta ei testattu erikseen lainkaan, sillä ne sisältävät vain gettereitä ja settereitä.
-- Ajanotto-luokka on testattu kattavasti. Yhteen metodiin on sisällytetty normaalia enemmän testausta, jotta odotteluvaihetta olisi mahdollisimman vähän ja testaus edes jokseenkin ripeätä.
-- Miinakentän luonnin sattumanvaraisuudesta johtuen mm. kentän ja lähiruutujen miinojen määrän oikeellisuutta on testattu myös silmämääräisesti tulostamalla kenttä komentoriville. Viereisten ruutujen avausta kun avataan ruutu jonka vieressä ei ole miinoja on testattu pelaamalla. En ole lähtenyt tekemään testejä varten luokkiin lisämetodeja. Myös mikaRuutu-metodin automaattinen testaus on puutteellista sattumanvaraisuuden takia.
-- Samaten Peli-luokan automaattitestaus on pelin sattumanvaraisuudesta johtuen puutteellista. En ole katsonut tarpeelliseksi lisätä luokkiin metodeja vain testausta varten, saati sitten kehittää automaattiratkaisijaa (joka ei pelin luonteesta johtuen edes toimisi 100-prosenttisesti) tai vakiokentän tuontimahdollisuutta, vaan mm. voittomekaniikkaa on testattu pelaamalla.
-- Tiedossa olevia bugeja ei ole.
+- Ruutua ja Vaikeutta ei testattu erikseen lainkaan, sillä ne sisältävät vain gettereitä ja settereitä. Lisäksi ne tulevat muiden luokkien testien yhteydessä kattavasti testatuiksi.
+- Ajanotto-luokka on testattu kattavasti. Joihinkin metodeihin on sisällytetty normaalia enemmän testausta, jotta odotteluvaihetta olisi mahdollisimman vähän ja testaus edes jokseenkin ripeätä.
+- Kentta-luokkaa on testattu automaattitestauksen lisäksi käsin erityisesti miinakentän luonnin ja mikaRuutu-metodin osalta tulostamalla komentoriville valmis kenttä sekä pelaamalla peliä.
+- Myös Peli-luokan testausta on jatkettu käsin pelaamalla, erityisesti rullanKlikkaus-metodin osalta, joka monine lopputulemineen on varsin haastava testattava.
+- Koulun koneilla ohjelman ikkuna siirtyi uuden pelin luonnin yhteydessä tapahtuvan ikkunan koon muutoksen aikana hieman alaspäin. Kotikoneella tätä ei tapahdu. En ehtinyt asiaa sen tarkemmin selvittää, johtuisiko koulun koneen Unitystä vs. kotikoneen XFCE? Muita tiedossa olevia bugeja ei ole.
