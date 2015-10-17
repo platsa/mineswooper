@@ -64,10 +64,10 @@ public class Peli {
      */
     public void rullanKlikkaus(int x, int y) {
         int montaMerkitty = 0;
-        if (onkoRuudukossa(x, y) && kentta.onkoAvattu(x, y)) {
+        if (onkoRuudukossa(x, y) && kentta.onkoAvattu(x, y) && !onkoPeliLoppunut()) {
             for (int i = -1; i < 2; i++) {
                 for (int j = -1; j < 2; j++) {
-                    if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
+                    if (onkoRuudukossa(x + i, y + j)) {
                         if (kentta.onkoMerkitty(x + i, y + j)) {
                             montaMerkitty++;
                         }
@@ -77,7 +77,7 @@ public class Peli {
             if (montaMerkitty == kentta.montaLahistolla(x, y)) {
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
-                        if (x + i >= 0 && x + i < vaikeus.getLeveys() && y + j >= 0 && y + j < vaikeus.getKorkeus()) {
+                        if (onkoRuudukossa(x + i, y + j)) {
                             avaaRuutu(x + i, y + j);
                         }
                     }
@@ -188,6 +188,7 @@ public class Peli {
     
     /**
      * Kertoo mikä ruutu käyttäjälle pitäisi olla näkyvissä.
+     * Palauttaa 0 jos koordinaatit eivät ruudukossa.
      * Palauttaa 0-8 jos lähiruutujen miinojen lkm.
      * Palauttaa 9 jos avaamaton ruutu.
      * Palauttaa 10 jos avaamaton ja merkattu ruutu.
@@ -199,7 +200,11 @@ public class Peli {
      * @return ruudun numero
      */
     public int mikaRuutu(int x, int y) {
-        return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
+        if (onkoRuudukossa(x, y)) {
+            return kentta.mikaRuutu(x, y, peliLoppunut, peliVoitettu);
+        } else {
+            return 0;
+        }
     }
     
     /**
@@ -212,5 +217,21 @@ public class Peli {
         } else {
             return miinoja;
         }
+    }
+    
+    /**
+     * Palauttaa pelin kentän.
+     * @return kentta
+     */
+    public Kentta getKentta() {
+        return kentta;
+    }
+    
+    /**
+     * Palauttaa pelin ajanoton.
+     * @return 
+     */
+    public Ajanotto getAjanotto() {
+        return aika;
     }
 }

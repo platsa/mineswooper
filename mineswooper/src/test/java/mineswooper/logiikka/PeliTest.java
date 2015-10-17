@@ -31,6 +31,10 @@ public class PeliTest {
         assertTrue(true);
     }
     
+    private boolean onkoRuudukossa(int x, int y) {
+        return x >= 0 && y >= 0 && x < vaikeus.getLeveys() && y < vaikeus.getKorkeus();
+    }
+    
     @Test
     public void aikaKaynnistyy() {
         peli.vasenKlikkaus(6, 7);
@@ -131,21 +135,82 @@ public class PeliTest {
     
     @Test
     public void rullanKlikkausTesti() {
-        peli.vasenKlikkaus(6, 7);
-        if (!peli.onkoPeliLoppunut()) {
-            int montaMiinaa = peli.mikaRuutu(6, 7);
-            while (montaMiinaa > 0) {
-                for (int i = -1; i < 2; i++) {
-                    for (int j = -1; j < 2; j++) {
-                        if (montaMiinaa > 0 && !(i == 0 && j == 0)) {
-                            peli.oikeaKlikkaus(6 + i, 7 + j);
-                            montaMiinaa--;
-                        }
-                    }
+        int x = 0;
+        int y = 0;
+        peli.vasenKlikkaus(x, y);
+        int montaMiinaa = peli.mikaRuutu(x, y);
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (montaMiinaa > 0 && !(i == 0 && j == 0) && onkoRuudukossa(x + i, y + j)) {
+                    peli.oikeaKlikkaus(x + i, y + j);
+                    montaMiinaa--;
                 }
             }
-            peli.rullanKlikkaus(6, 7);
-            assertTrue(peli.mikaRuutu(7, 8) != 9);
         }
+        peli.rullanKlikkaus(x, y);
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                assertTrue(peli.mikaRuutu(x + i, y + j) != 9);
+            }
+        }
+    }
+    
+    @Test
+    public void ekallaKlikkauksellaEiHavia() {
+        int x = -1;
+        int y = -1;
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if (peli.getKentta().onkoMiinaa(i, j)) {
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+            if (x != -1) {
+                break;
+            }
+        }
+        peli.vasenKlikkaus(x, y);
+        assertTrue(!peli.onkoPeliLoppunut());
+    }
+    
+    @Test
+    public void laukeaakoMiina() {
+        peli.vasenKlikkaus(0, 0);
+        int x = -1;
+        int y = -1;
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if (peli.getKentta().onkoMiinaa(i, j)) {
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+            if (x != -1) {
+                break;
+            }
+        }
+        peli.vasenKlikkaus(x, y);
+        assertEquals(12, peli.mikaRuutu(x, y));
+        assertTrue(peli.onkoPeliLoppunut());
+        assertTrue(!peli.onkoPeliVoitettu());
+    }
+    
+    @Test
+    public void voitetaanPeli() {
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if (!peli.getKentta().onkoMiinaa(i, j)) {
+                    peli.vasenKlikkaus(i, j);
+                }
+            }
+            
+        }
+        assertTrue(peli.onkoPeliLoppunut());
+        assertTrue(peli.onkoPeliVoitettu());
+        assertTrue(peli.getAjanotto().aikaLopetettu());
+        assertEquals(0, peli.getMiinoja());
     }
 }

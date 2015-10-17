@@ -16,3 +16,4 @@
 - 8.10.2015 4,5h, Rullanklikkaustoiminnallisuus, testausta, hienosäätöä, sekvenssikaavioita
 - 15.10.2015 2,5h Rullanklikkaustoiminnallisuuden korjausta, hienosäätöä.
 - 15.10.2015 2,5h Dokumentaatiota.
+- 17.10.2015, 2h Testausta, pikku viilausta.

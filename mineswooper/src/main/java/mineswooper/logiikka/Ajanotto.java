@@ -74,4 +74,12 @@ public class Ajanotto {
     public boolean aikaKaynnistetty() {
         return lahtoaika != -1;
     }
+    
+    /**
+     * Kertoo onko ajanotto lopetettu
+     * @return  onko ajanotto lopetettu
+     */
+    public boolean aikaLopetettu() {
+        return loppuaika != -1;
+    }
 }

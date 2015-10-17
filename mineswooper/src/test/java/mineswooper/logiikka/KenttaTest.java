@@ -144,4 +144,30 @@ public class KenttaTest {
         assertEquals(false, kentta.onkoAvaamattomiaMiinattomiaRuutuja());
     }
     
+    @Test
+    public void avaakoViereiset() {
+        int x = -1;
+        int y = -1;
+        for (int i = 0; i < vaikeus.getLeveys(); i++) {
+            for (int j = 0; j < vaikeus.getKorkeus(); j++) {
+                if (kentta.montaLahistolla(i, j) == 0 && !kentta.onkoMiinaa(i, j)) {
+                    x = i;
+                    y = j;
+                    break;
+                }
+            }
+            if (x != -1) {
+                break;
+            }
+        }
+        kentta.avaaRuutu(x, y);
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (x + i >= 0 && y + j >= 0 && x + i < vaikeus.getLeveys() && y + j < vaikeus.getKorkeus()) {
+                    assertTrue(kentta.onkoAvattu(x + i, y + j));
+                }
+            }
+        }
+    }
+    
 }
