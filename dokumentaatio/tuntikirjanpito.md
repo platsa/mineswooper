@@ -18,3 +18,4 @@
 - 15.10.2015 2,5h Dokumentaatiota.
 - 17.10.2015, 2h Testausta, pikku viilausta.
 - 17.10.2015 1h Vielä vähän testausta ja dokumentointia.
+- Yht. noin 49h.
