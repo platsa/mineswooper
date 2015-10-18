@@ -2,4 +2,5 @@
 - Ajanotto-luokka on testattu kattavasti. Joihinkin metodeihin on sisällytetty normaalia enemmän testausta, jotta odotteluvaihetta olisi mahdollisimman vähän ja testaus edes jokseenkin ripeätä.
 - Kentta-luokkaa on testattu automaattitestauksen lisäksi käsin erityisesti miinakentän luonnin ja mikaRuutu-metodin osalta tulostamalla komentoriville valmis kenttä sekä pelaamalla peliä.
 - Myös Peli-luokan testausta on jatkettu käsin pelaamalla, erityisesti rullanKlikkaus-metodin osalta, joka monine lopputulemineen on varsin haastava testattava.
+- Käyttöliittymä testattu käsin.
 - Koulun koneilla ohjelman ikkuna siirtyi uuden pelin luonnin yhteydessä tapahtuvan ikkunan koon muutoksen aikana hieman alaspäin. Kotikoneella tätä ei tapahdu. En ehtinyt asiaa sen tarkemmin selvittää, johtuisiko koulun koneen Unitystä vs. kotikoneen XFCE? Muita tiedossa olevia bugeja ei ole.
